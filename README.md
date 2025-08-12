@@ -102,42 +102,26 @@ Update meta tags in `index.html`:
 - Twitter Card tags
 - Update URLs to your domain
 
+## 🏗️ Architecture Highlights
+
+### Modern React Patterns
+- **Functional Components** with hooks
+- **CSS Modules** for scoped styling
+- **Component-based architecture** for maintainability
+- **Error Boundaries** for graceful error handling
+
+### Performance Optimizations
+- **Vite** for fast development and optimized builds
+- **CSS Variables** for consistent theming
+- **Font optimization** with preconnect and display=swap
+- **Responsive design** with mobile-first approach
+
 ## 📱 Responsive Design
 
 The portfolio is fully responsive and optimized for:
 - Desktop (1200px+)
 - Tablet (768px - 1199px)
 - Mobile (320px - 767px)
-
-## 🚀 Deployment
-
-### Vercel (Recommended)
-
-1. Push your code to GitHub
-2. Connect your repository to Vercel
-3. Deploy automatically
-
-### Netlify
-
-1. Build the project: `npm run build`
-2. Upload the `dist` folder to Netlify
-
-### GitHub Pages
-
-1. Add to package.json:
-   ```json
-   "homepage": "https://yourusername.github.io/devportfolio"
-   ```
-2. Install gh-pages: `npm install --save-dev gh-pages`
-3. Add script: `"deploy": "gh-pages -d dist"`
-4. Build and deploy: `npm run build && npm run deploy`
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
 
 ## 📄 License
 
