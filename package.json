@@ -1,11 +1,11 @@
 {
-  "name": "devportfolio",
+  "name": "fufu-and-co-portfolio",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "A modern, responsive portfolio website showcasing web development projects and skills",
-  "keywords": ["portfolio", "react", "web developer", "frontend", "vite"],
-  "author": "Your Name <your.email@example.com>",
+  "description": "Fufu & Co. - A junior developer portfolio website showcasing web development projects and learning journey",
+  "keywords": ["portfolio", "react", "web developer", "frontend", "vite", "fufu-and-co", "junior developer"],
+  "author": "Fufu & Co. <your.email@example.com>",
   "license": "MIT",
   "homepage": "https://yourdomain.com",
   "scripts": {

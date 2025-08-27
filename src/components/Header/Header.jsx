@@ -5,8 +5,12 @@ function Header() {
     <header className={styles.header}>
       <div className={styles.container}>
         <div className={styles.logo}>
-          <span className={styles.logoText}>DevPortfolio</span>
-          <span className={styles.logoDot}>.</span>
+          <img 
+            src="/logo_200x200.png" 
+            alt="Fufu & Co. Bear Mascot" 
+            className={styles.logoImage}
+          />
+          <span className={styles.logoText}>Fufu & Co.</span>
         </div>
         
         <nav className={styles.nav}>

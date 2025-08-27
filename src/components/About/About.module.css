@@ -2,12 +2,12 @@
 
 .about {
   padding: var(--spacing-xl) 0;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
 }
 
 .container {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--spacing-lg);
 }
@@ -17,77 +17,205 @@
   font-weight: 700;
   text-align: center;
   margin-bottom: var(--spacing-xl);
-  color: var(--text-dark);
+  background: linear-gradient(135deg, var(--mango-orange) 0%, var(--orange) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-xl);
-  align-items: start;
+  max-width: 800px;
+  margin: 0 auto var(--spacing-xl) auto;
 }
 
 .text {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
+  gap: var(--spacing-lg);
 }
 
 .description {
   font-size: 1.1rem;
   line-height: 1.7;
   color: var(--text-medium);
+  text-align: center;
 }
 
-.skills {
-  background: rgba(255, 255, 255, 0.8);
-  padding: var(--spacing-lg);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
-  border: 1px solid rgba(253, 203, 110, 0.2);
+.journeySection {
+  margin-top: var(--spacing-xl);
 }
 
-.skillsTitle {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: var(--spacing-md);
+.journeyTitle {
+  font-size: 2rem;
+  font-weight: 700;
   color: var(--text-dark);
+  margin-bottom: var(--spacing-sm);
+  text-align: center;
 }
 
-.skillsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: var(--spacing-sm);
+.journeySubtitle {
+  font-size: 1.1rem;
+  color: var(--text-medium);
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  font-style: italic;
 }
 
-.skill {
+.journeyFlow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.journeyStep {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  border: 2px solid rgba(253, 203, 110, 0.3);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 200px;
+  max-width: 220px;
+  text-align: center;
+  position: relative;
+  backdrop-filter: blur(8px);
+}
+
+.journeyStep:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(253, 203, 110, 0.2);
+  border-color: rgba(253, 203, 110, 0.6);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.stepIcon {
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-sm);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.stepTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: var(--spacing-xs);
+}
+
+.stepDescription {
+  font-size: 0.9rem;
+  color: var(--text-medium);
+  line-height: 1.4;
+  margin-bottom: var(--spacing-sm);
+  font-style: italic;
+}
+
+.stepTech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  justify-content: center;
+}
+
+.techTag {
   background: linear-gradient(135deg, var(--mango-orange) 0%, var(--orange) 100%);
   color: white;
-  padding: var(--spacing-sm) var(--spacing-md);
+  padding: 0.3rem 0.6rem;
   border-radius: var(--radius-sm);
-  text-align: center;
+  font-size: 0.75rem;
   font-weight: 500;
-  font-size: 0.9rem;
   transition: all 0.3s ease;
+  cursor: default;
 }
 
-.skill:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-sm);
+.techTag:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+}
+
+.flowArrow {
+  font-size: 1.5rem;
+  color: var(--mango-orange);
+  font-weight: bold;
+  margin: 0 var(--spacing-sm);
+  animation: pulse 2s infinite;
+  filter: drop-shadow(0 2px 4px rgba(255, 107, 53, 0.3));
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-  .content {
-    grid-template-columns: 1fr;
+@media (max-width: 1024px) {
+  .journeyFlow {
+    flex-direction: column;
     gap: var(--spacing-lg);
   }
   
+  .flowArrow {
+    transform: rotate(90deg);
+    margin: var(--spacing-sm) 0;
+  }
+}
+
+@media (max-width: 768px) {
   .title {
     font-size: 2rem;
   }
   
-  .skillsGrid {
-    grid-template-columns: repeat(2, 1fr);
+  .journeyTitle {
+    font-size: 1.6rem;
+  }
+  
+  .journeySubtitle {
+    font-size: 1rem;
+  }
+  
+  .description {
+    font-size: 1rem;
+  }
+  
+  .journeyStep {
+    min-width: 180px;
+    max-width: 200px;
+    padding: var(--spacing-sm);
+  }
+  
+  .stepIcon {
+    font-size: 2rem;
+  }
+  
+  .stepTitle {
+    font-size: 1rem;
+  }
+  
+  .stepDescription {
+    font-size: 0.85rem;
+  }
+  
+  .techTag {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .journeyStep {
+    min-width: 160px;
+    max-width: 180px;
+  }
+  
+  .flowArrow {
+    font-size: 1.2rem;
   }
 }

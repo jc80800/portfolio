@@ -1,6 +1,6 @@
-# DevPortfolio 🍊
+# Fufu & Co. Portfolio 🐻
 
-A modern, responsive portfolio website built with React and Vite. Features a vibrant mango-pineapple theme with smooth animations and a clean, professional design.
+A modern, responsive portfolio website built with React and Vite. Features a vibrant mango-pineapple theme with smooth animations and a clean, professional design. At Fufu & Co., we turn "foolish" ideas into brilliant reality through <del>clean</del> code and <del>creative</del> solutions.
 
 ## ✨ Features
 
@@ -46,7 +46,7 @@ src/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/devportfolio.git
+   git clone https://github.com/jc80800/portfolio.git
    cd devportfolio
    ```
 
@@ -136,4 +136,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-Made with ❤️ and 🍊 by Jason C. (where C. stands for Cursor! 🖱️✨)
+Made with ❤️ and 🐻 by Fufu & Co.

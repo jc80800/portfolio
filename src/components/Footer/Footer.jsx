@@ -6,9 +6,9 @@ function Footer() {
       <div className={styles.container}>
         <div className={styles.content}>
           <div className={styles.brand}>
-            <h3 className={styles.logo}>DevPortfolio.</h3>
+            <h3 className={styles.logo}>Fufu & Co.</h3>
             <p className={styles.tagline}>
-              Building digital experiences that make a difference.
+              Turning "foolish" ideas into brilliant reality.
             </p>
           </div>
           
@@ -32,7 +32,7 @@ function Footer() {
         </div>
         
         <div className={styles.bottom}>
-          <p className={styles.copyright}>© 2025 DevPortfolio. All rights reserved.</p>
+          <p className={styles.copyright}>© 2025 Fufu & Co. All rights reserved.</p>
           <div className={styles.legal}>
             <a href="#" className={styles.legalLink}>Privacy Policy</a>
             <a href="#" className={styles.legalLink}>Terms of Service</a>
