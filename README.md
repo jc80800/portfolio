@@ -1,139 +1,41 @@
 # Fufu & Co. Portfolio 🐻
 
-A modern, responsive portfolio website built with React and Vite. Features a vibrant mango-pineapple theme with smooth animations and a clean, professional design. At Fufu & Co., we turn "foolish" ideas into brilliant reality through <del>clean</del> code and <del>creative</del> solutions.
+**Copyright © 2025 Jason C.**
 
-## ✨ Features
+> A modern, responsive portfolio website showcasing backend engineering expertise with a playful twist. Built with React, Vite, and a dash of "foolish" creativity.
 
-- **Modern Design**: Clean, responsive layout with glassmorphism effects
-- **Component-Based**: Modular React components with CSS Modules
-- **Performance**: Optimized with Vite for fast development and builds
-- **Accessible**: Semantic HTML and keyboard navigation support
-- **SEO Ready**: Meta tags, Open Graph, and structured data
-- **Mobile First**: Responsive design that works on all devices
+## 📋 About This Project
 
-## 🚀 Tech Stack
+This portfolio represents my journey as a wealth-loving software engineer. The idea of this portfolio is to showcase my expertise in software engineering as well as my current career progress through the use of a unique brand identity and a playful approach to different projects to make money.
 
-- **Frontend**: React 19, Vite
-- **Styling**: CSS Modules, CSS Variables
-- **Fonts**: Inter (Google Fonts)
-- **Build Tool**: Vite
-- **Linting**: ESLint
+### The "Fufu & Co." Philosophy
 
-## 📁 Project Structure
+> "According to sources like Urban Dictionary and Merriam-Webster, 'foo-foo' (or 'foo foo') can refer to a silly or foolish person. It can also describe something pretentious or overly elaborate in style."
 
-```
-src/
-├── components/          # React components
-│   ├── Header/         # Navigation header
-│   ├── Hero/           # Hero section
-│   ├── About/          # About section
-│   ├── Projects/       # Projects showcase
-│   └── Footer/         # Footer section
-├── styles/             # Global styles
-│   └── globals.css     # CSS variables & utilities
-├── App.jsx             # Main app component
-└── main.jsx            # Entry point
-```
+**Fufu & Co.** embodies the philosophy that the most innovative solutions often begin as "foolish" ideas. 
 
-## 🛠️ Getting Started
-
-### Prerequisites
-
-- Node.js (v18 or higher)
-- npm or yarn
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/jc80800/portfolio.git
-   cd devportfolio
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Start development server**
-   ```bash
-   npm run dev
-   ```
-
-4. **Open your browser**
-   Navigate to `http://localhost:5173`
-
-### Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
-- `npm run format` - Format code with Prettier
-
-## 🎨 Customization
-
-### Colors & Theme
-
-The color scheme is defined in `src/styles/globals.css` using CSS variables:
-
-```css
-:root {
-  --mango-orange: #ff6b35;
-  --golden-yellow: #fdcb6e;
-  --orange: #f7931e;
-  /* ... more variables */
-}
-```
-
-### Content
-
-Update the content in each component file:
-- `src/components/Hero/Hero.jsx` - Hero section content
-- `src/components/About/About.jsx` - About section content
-- `src/components/Projects/Projects.jsx` - Project showcase
-- `src/components/Footer/Footer.jsx` - Footer links and info
-
-### SEO
-
-Update meta tags in `index.html`:
-- Title and description
-- Open Graph tags
-- Twitter Card tags
-- Update URLs to your domain
-
-## 🏗️ Architecture Highlights
-
-### Modern React Patterns
-- **Functional Components** with hooks
-- **CSS Modules** for scoped styling
-- **Component-based architecture** for maintainability
-- **Error Boundaries** for graceful error handling
-
-### Performance Optimizations
-- **Vite** for fast development and optimized builds
-- **CSS Variables** for consistent theming
-- **Font optimization** with preconnect and display=swap
-- **Responsive design** with mobile-first approach
-
-## 📱 Responsive Design
-
-The portfolio is fully responsive and optimized for:
-- Desktop (1200px+)
-- Tablet (768px - 1199px)
-- Mobile (320px - 767px)
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- [React](https://reactjs.org/) - UI library
-- [Vite](https://vitejs.dev/) - Build tool
-- [Inter Font](https://rsms.me/inter/) - Typography
-- [CSS Modules](https://github.com/css-modules/css-modules) - Styling
+My vision for this brand is to be a reflection of my career philosophy and how I approach different projects. As an engineer, I believe being a "fool" is a good thing. It allows more unconventional solutions to come to mind and leads me to be more open to learning and growing, all while having fun and preventing burnout.
 
 ---
 
-Made with ❤️ and 🐻 by Fufu & Co.
+## 📚 Learning Resources
+
+For detailed technical documentation, advanced CSS techniques, and implementation notes, see [LEARNING-NOTES.md](./LEARNING-NOTES.md). Note: These are all AI generated, I would double check :P
+
+---
+
+## 🤝 Contributing
+
+While this is a personal portfolio, I welcome feedback and suggestions! Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed guidelines on how to contribute while respecting intellectual property rights.
+
+**Note**: The "Fufu & Co." brand identity and associated creative elements are protected. Please provide attribution if using this code for your own projects.
+
+---
+
+<div align="center">
+
+**Made with ❤️ and 🐻 by Fufu & Co... and Cursor :P**
+
+*Turning "foolish" ideas into brilliant reality*
+
+</div>
