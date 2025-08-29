@@ -1,5 +1,10 @@
 /* globals.css - Global styles and CSS variables */
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
 :root {
   /* Color Variables */
   --mango-orange: #ff6b35;

@@ -4,7 +4,15 @@
   "version": "1.0.0",
   "type": "module",
   "description": "Fufu & Co. - A junior developer portfolio website showcasing web development projects and learning journey",
-  "keywords": ["portfolio", "react", "web developer", "frontend", "vite", "fufu-and-co", "junior developer"],
+  "keywords": [
+    "portfolio",
+    "react",
+    "web developer",
+    "frontend",
+    "vite",
+    "fufu-and-co",
+    "junior developer"
+  ],
   "author": "Fufu & Co. <your.email@example.com>",
   "license": "MIT",
   "homepage": "https://yourdomain.com",
@@ -17,6 +25,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },
