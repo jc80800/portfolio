@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import styles from './Header.module.css'
 import Contact from '../Contact/Contact'
 
@@ -23,9 +24,10 @@ function Header() {
           
           <nav className={styles.nav}>
             <ul className={styles.navList}>
-              <li><a href="#home" className={styles.navLink}>Home</a></li>
+              <li><Link to="/" className={styles.navLink}>Home</Link></li>
               <li><a href="#about" className={styles.navLink}>About</a></li>
               <li><a href="#work" className={styles.navLink}>Work</a></li>
+              <li><Link to="/handbook" className={styles.navLink}>Handbook</Link></li>
             </ul>
           </nav>
           

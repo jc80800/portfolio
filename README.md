@@ -1,6 +1,6 @@
 # Fufu & Co. Portfolio 🐻
 
-**Copyright © 2025 Jason C.**
+**Copyright © 2025 Jason C.**r
 
 > A modern, responsive portfolio website showcasing backend engineering expertise with a playful twist. Built with React, Vite, and a dash of "foolish" creativity.
 
