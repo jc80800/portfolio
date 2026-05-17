@@ -4,8 +4,8 @@
   background: var(--card-bg);
   backdrop-filter: blur(10px);
   border-top: 1px solid rgba(199, 91, 57, 0.15);
-  padding: var(--spacing-xl) 0 var(--spacing-lg);
-  margin-top: var(--spacing-xl);
+  padding: var(--spacing-lg) 0 var(--spacing-md);
+  margin-top: var(--spacing-lg);
 }
 
 .container {
@@ -17,8 +17,8 @@
 .content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-xl);
-  margin-bottom: var(--spacing-lg);
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
   align-items: start;
 }
 
@@ -81,7 +81,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: var(--spacing-lg);
+  padding-top: var(--spacing-md);
   border-top: 1px solid rgba(199, 91, 57, 0.12);
   flex-wrap: wrap;
   gap: var(--spacing-sm);

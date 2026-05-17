@@ -1,13 +1,18 @@
 import StackTags from '../StackTags/StackTags'
 import styles from './GalleryCard.module.css'
 
-function GalleryCard({ item, className = '', style }) {
+function GalleryCard({ item, displayIndex, className = '', style }) {
   const { title, tagline, stack, proves, githubUrl, status } = item
   const isWip = status === 'wip'
   const showGithub = Boolean(githubUrl)
 
   return (
     <article className={`${styles.card} ${className}`.trim()} style={style}>
+      {displayIndex != null && (
+        <span className={styles.index} aria-hidden="true">
+          {String(displayIndex).padStart(2, '0')}
+        </span>
+      )}
       <div className={styles.header}>
         <h3 className={styles.title}>{title}</h3>
         {isWip && <span className={styles.badge}>WIP</span>}

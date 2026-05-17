@@ -36,4 +36,20 @@ describe('GalleryCard', () => {
     expect(screen.getByText(/coming soon/i)).toBeInTheDocument()
     expect(screen.queryByRole('link', { name: /github/i })).not.toBeInTheDocument()
   })
+
+  it('renders zero-padded display index when displayIndex is provided', () => {
+    const { container } = render(<GalleryCard item={baseItem} displayIndex={1} />)
+    expect(container.querySelector('[class*="index"]')).toHaveTextContent('01')
+  })
+
+  it('does not render display index when displayIndex is omitted', () => {
+    const { container } = render(<GalleryCard item={baseItem} />)
+    expect(container.querySelector('[class*="index"]')).not.toBeInTheDocument()
+  })
+
+  it('does not prepend index to accessible card title', () => {
+    render(<GalleryCard item={baseItem} displayIndex={1} />)
+    expect(screen.getByRole('heading', { name: 'Test App' })).toBeInTheDocument()
+    expect(screen.queryByRole('heading', { name: /01/i })).not.toBeInTheDocument()
+  })
 })

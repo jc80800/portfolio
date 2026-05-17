@@ -14,6 +14,7 @@ function GalleryGrid({ items }) {
         <GalleryCard
           key={item.id}
           item={item}
+          displayIndex={index + 1}
           className={styles.card}
           style={{ transitionDelay: `${index * 80}ms` }}
         />
