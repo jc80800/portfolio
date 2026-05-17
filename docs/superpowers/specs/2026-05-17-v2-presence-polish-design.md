@@ -34,7 +34,7 @@ V2 is **not a redesign**. It improves presence, threshold clarity, section flow,
 | Gate frame | Lintel, vertical posts, soft threshold read |
 | Waterline | Stronger near koi, fade at edges |
 | Hero → Gallery | Soft bottom wash on `.hero` |
-| Gallery cards | Optional `displayIndex` (`01`, `02`, …) |
+| Gallery cards | Contextual `displayIndex` (`01`, `02`, …) |
 | Gallery → About | Modest padding + subtle About top wash |
 
 ### Out of scope
@@ -91,7 +91,7 @@ Scale the **entire `.scene`** as a group — not koi alone, not CTA, not individ
 
 - First viewport remains hero-only; gallery must not peek into the first screen.
 - Preserve calm spacing; do not add copy.
-- If horizontal clipping appears after scale, rely on existing `.hero { overflow: hidden }` or adjust — do not scale koi independently.
+- If horizontal clipping appears after scale, `.hero { overflow: hidden }` may help — **verify it does not clip the koi, waterline, or bottom wash** before keeping it. Do not scale koi independently.
 
 **Files:** `src/components/Hero/Hero.module.css`
 
@@ -168,10 +168,12 @@ Scroll from hero to Gallery feels plain; weak sense of crossing from threshold i
 Add a **soft wash at the bottom of `.hero`** (not a scroll cue, not waterline continuation into gallery).
 
 ```text
-.hero
+.hero (position: relative)
   └─ ::after — bottom wash, pointer-events: none
 GalleryTeaser — stays transparent; reads as continuation
 ```
+
+`.hero` must be `position: relative` so `::after` positions against the hero section, not a distant ancestor. (`.hero` already uses `position: relative` in the codebase — preserve it.)
 
 **Gradient direction (explicit):** The wash sits at the **bottom of `.hero`** and fades from **transparent at the top** to the **page/section background at the bottom**.
 
@@ -202,8 +204,10 @@ Do **not** add index fields to `gallery.js`. Derive at render time only.
 
 ### API
 
+The `displayIndex` **prop is optional** at the component level so callers that omit it behave as today. V2 **requires** `GalleryGrid` to pass it for home and gallery grids.
+
 ```jsx
-// GalleryGrid.jsx
+// GalleryGrid.jsx — use the existing stable card key from the current codebase (today: item.id)
 items.map((item, index) => (
   <GalleryCard
     key={item.id}
@@ -215,10 +219,12 @@ items.map((item, index) => (
 ```
 
 ```jsx
-// GalleryCard.jsx — when displayIndex is provided
-<span className={styles.index} aria-hidden="true">
-  {String(displayIndex).padStart(2, '0')}
-</span>
+// GalleryCard.jsx — render index when displayIndex is provided
+{displayIndex != null && (
+  <span className={styles.index} aria-hidden="true">
+    {String(displayIndex).padStart(2, '0')}
+  </span>
+)}
 ```
 
 ### Presentation
@@ -269,15 +275,22 @@ Gallery and About can feel compressed; About should feel like the grounded perso
   inset: 0 0 auto;
   height: 120px;
   pointer-events: none;
+  z-index: 0;
   background: linear-gradient(
     to bottom,
     /* warm tokens at very low alpha */
     transparent
   );
 }
+
+/* Ensure wash sits behind About content */
+.about .container {
+  position: relative;
+  z-index: 1;
+}
 ```
 
-Use existing `--bg-cream`, `--bg-peach`, and `--primary` rgba values — no new colors.
+Use existing `--bg-cream`, `--bg-peach`, and `--primary` rgba values — no new colors. Ensure the wash sits **behind** About text (not covering titles or body copy).
 
 ### Border treatment
 
@@ -341,7 +354,7 @@ The About wash should be noticeable **only as a softer transition**, not as a vi
 | `GalleryTeaser.module.css` | Bottom padding |
 | `About.module.css` | Top padding, `::before` wash, border soften |
 | `GalleryGrid.jsx` | Pass `displayIndex` |
-| `GalleryCard.jsx` | Render optional index |
+| `GalleryCard.jsx` | Render contextual index when `displayIndex` prop is set |
 | `GalleryCard.module.css` | `.index` styles |
 | `GalleryCard.test.jsx` | Index display tests |
 
