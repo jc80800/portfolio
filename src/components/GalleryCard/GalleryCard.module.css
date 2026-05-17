@@ -52,19 +52,12 @@
   margin-bottom: var(--spacing-sm);
 }
 
-.proves {
-  margin-top: var(--spacing-sm);
-  font-size: 0.9rem;
-  color: var(--text-primary);
-}
-
-.provesLabel {
-  font-weight: 600;
-  color: var(--primary);
-}
-
 .actions {
   margin-top: var(--spacing-md);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  align-items: center;
 }
 
 .link {

@@ -7,24 +7,46 @@ const baseItem = {
   title: 'Test App',
   tagline: 'A test tagline',
   stack: ['Go', 'React'],
-  proves: 'Testing things',
   githubUrl: 'https://github.com/example/test-app',
+  liveUrl: null,
+  status: 'shipped',
+}
+
+const liveItem = {
+  ...baseItem,
+  id: 'pomodoro-roulette',
+  title: 'Pomodoro Roulette',
+  liveUrl: 'https://pomodororoulette-production.up.railway.app/',
   status: 'shipped',
 }
 
 describe('GalleryCard', () => {
-  it('renders title, tagline, stack, and proves', () => {
+  it('renders title, tagline, and stack', () => {
     render(<GalleryCard item={baseItem} />)
     expect(screen.getByRole('heading', { name: 'Test App' })).toBeInTheDocument()
     expect(screen.getByText('A test tagline')).toBeInTheDocument()
     expect(screen.getByText('Go')).toBeInTheDocument()
-    expect(screen.getByText('Testing things')).toBeInTheDocument()
   })
 
   it('shows GitHub link when githubUrl is set', () => {
     render(<GalleryCard item={baseItem} />)
     const link = screen.getByRole('link', { name: /view test app on github/i })
     expect(link).toHaveAttribute('href', baseItem.githubUrl)
+  })
+
+  it('shows Open app and GitHub links when both URLs are set', () => {
+    render(<GalleryCard item={liveItem} />)
+    const open = screen.getByRole('link', { name: /open pomodoro roulette/i })
+    const github = screen.getByRole('link', { name: /view pomodoro roulette on github/i })
+    expect(open).toHaveAttribute('href', liveItem.liveUrl)
+    expect(github).toHaveAttribute('href', liveItem.githubUrl)
+    expect(open.compareDocumentPosition(github) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+  })
+
+  it('shows GitHub only when liveUrl is null', () => {
+    render(<GalleryCard item={baseItem} />)
+    expect(screen.getByRole('link', { name: /view test app on github/i })).toBeInTheDocument()
+    expect(screen.queryByRole('link', { name: /open test app/i })).not.toBeInTheDocument()
   })
 
   it('shows Coming soon for wip without githubUrl', () => {
