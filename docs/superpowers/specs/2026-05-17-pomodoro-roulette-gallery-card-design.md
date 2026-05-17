@@ -1,14 +1,14 @@
-# Pomodoro Roulette Gallery Card — Design Spec
+# Gallery Update — Pomodoro, llm_rpg, RateMySoft — Design Spec
 
 **Date:** 2026-05-17  
 **Status:** Approved (brainstorming)  
-**Scope:** Replace Gamble Gauge with Pomodoro Roulette; add `liveUrl` CTA to gallery cards; reorder gallery so shipped work leads WIP entries
+**Scope:** Gallery data refresh (5 entries); `liveUrl` CTA on cards; home teaser shows first three shipped/repo apps
 
 ---
 
 ## Summary
 
-Add **Pomodoro Roulette** as the first gallery entry (shipped, featured) with GitHub and live Railway links. Remove **Gamble Gauge**. Extend `GalleryCard` to render an **Open app** link when `liveUrl` is set, using twin text links (Approach 1).
+Refresh `gallery.js` with five projects in a fixed order. **Pomodoro Roulette** is live (GitHub + Open app). **llm_rpg** and **RateMySoft** are **GitHub-only** (`shipped`, no `liveUrl`). **Weather or Not** and **Not-To-Do List** remain WIP placeholders, no longer on the home teaser. Extend `GalleryCard` to render **Open app** when `liveUrl` is set.
 
 ---
 
@@ -16,17 +16,19 @@ Add **Pomodoro Roulette** as the first gallery entry (shipped, featured) with Gi
 
 | Goal | How |
 |------|-----|
-| Showcase a real shipped app | `status: 'shipped'`, `liveUrl` + `githubUrl` populated |
-| Lead with proof, not placeholders | Pomodoro first in `galleryItems`; WIP cards follow |
-| Match Gatewood Lab voice | Playful tagline + `proves` line (user-selected copy) |
-| Minimal UI change | Second link in existing `.actions` row; no card redesign |
+| Lead with real work | Pomodoro → llm_rpg → RateMySoft first |
+| GitHub-only repos still count as shipped | `status: 'shipped'`, `githubUrl` set, `liveUrl: null`, no WIP badge |
+| Home teaser stays tight | `featured: true` on first three only |
+| Live demo where it exists | Pomodoro `liveUrl` + twin CTAs |
+| Match Gatewood Lab voice | Playful taglines + `proves` (user-selected) |
 
 ## Non-goals
 
-- Primary/secondary button styling for CTAs (future polish)
+- Primary/secondary button styling for CTAs
 - `embedUrl`, per-app detail routes, GitHub API
-- Changes to hero, About, nav, or mascot
-- Editing Weather or Not / Not-To-Do copy or status
+- Deploying llm_rpg or RateMySoft
+- Rewriting Weather / Not-To-Do copy
+- Removing Fufu/panda references inside RateMySoft repo README (portfolio card only)
 
 ---
 
@@ -36,7 +38,9 @@ Add **Pomodoro Roulette** as the first gallery entry (shipped, featured) with Gi
 
 - Entire `gamble-gauge` object
 
-### Add (first in array)
+### Entries (array order = grid order)
+
+#### 1. Pomodoro Roulette
 
 ```js
 {
@@ -57,15 +61,65 @@ Add **Pomodoro Roulette** as the first gallery entry (shipped, featured) with Gi
 }
 ```
 
-### Display order (array index = grid order)
+#### 2. llm_rpg
 
-| # | `id` | `status` | `featured` |
-|---|------|----------|------------|
-| 1 | `pomodoro-roulette` | `shipped` | `true` |
-| 2 | `weather-or-not` | `wip` | `true` |
-| 3 | `not-todo` | `wip` | `true` |
+```js
+{
+  id: 'llm-rpg',
+  title: 'llm_rpg',
+  tagline: 'CRUD is boring. This terminal still won’t ship a live URL.',
+  description:
+    'Terminal RPG sandbox for hexagonal architecture, ports/adapters, and Bubble Tea UI experiments.',
+  stack: ['Go', 'Bubble Tea'],
+  proves: 'Domain boundaries, event-driven TUI, Go-only sandbox',
+  githubUrl: 'https://github.com/jc80800/llm_rpg',
+  liveUrl: null,
+  embedUrl: null,
+  slug: null,
+  featured: true,
+  tags: ['games', 'architecture'],
+  status: 'shipped',
+}
+```
 
-Home teaser (`getFeaturedItems`) and `/gallery` both show three cards in this order. Card index labels (`01`, `02`, `03`) follow render order via existing `displayIndex` behavior.
+#### 3. RateMySoft
+
+```js
+{
+  id: 'rate-my-soft',
+  title: 'RateMySoft',
+  tagline: 'Software reviews, with a panda who takes this very seriously.',
+  description:
+    'Software review and discovery platform — browse categories, compare tools, read community reviews.',
+  stack: ['Go', 'React'],
+  proves: 'Echo backend, discovery UX, repo-ready product scaffold',
+  githubUrl: 'https://github.com/jc80800/RateMySoft',
+  liveUrl: null,
+  embedUrl: null,
+  slug: null,
+  featured: true,
+  tags: ['reviews', 'full-stack'],
+  status: 'shipped',
+}
+```
+
+#### 4–5. WIP placeholders (unchanged copy; `featured: false`)
+
+- `weather-or-not` — keep existing fields; set `featured: false`
+- `not-todo` — keep existing fields; set `featured: false`
+
+### Display order summary
+
+| # | `id` | `status` | `featured` | CTAs |
+|---|------|----------|------------|------|
+| 1 | `pomodoro-roulette` | `shipped` | `true` | Open app + GitHub |
+| 2 | `llm-rpg` | `shipped` | `true` | GitHub only |
+| 3 | `rate-my-soft` | `shipped` | `true` | GitHub only |
+| 4 | `weather-or-not` | `wip` | `false` | Coming soon |
+| 5 | `not-todo` | `wip` | `false` | Coming soon |
+
+**Home teaser** (`getFeaturedItems`): cards `01`–`03` (Pomodoro, llm_rpg, RateMySoft).  
+**`/gallery`**: all five in order; WIP badges on 4–5 only.
 
 ---
 
@@ -77,7 +131,7 @@ Home teaser (`getFeaturedItems`) and `/gallery` both show three cards in this or
 
 ### WIP badge
 
-Shown only when `status === 'wip'`. Pomodoro Roulette does not show a badge.
+Shown only when `status === 'wip'`.
 
 ### Actions row (Approach 1 — twin text links)
 
@@ -86,10 +140,9 @@ Shown only when `status === 'wip'`. Pomodoro Roulette does not show a badge.
 | `liveUrl` set | Link: **Open app** → `liveUrl` |
 | `githubUrl` set | Link: **View on GitHub** → `githubUrl` |
 | Both set | Both links; **Open app** first, then GitHub |
-| `liveUrl` only | Open app only |
-| `githubUrl` only | GitHub only (current behavior) |
+| `githubUrl` only | GitHub only |
 | Neither + `wip` | **Coming soon** |
-| Neither + not `wip` | Empty actions (no new copy required for v1) |
+| Neither + not `wip` | Empty actions |
 
 ### Link attributes
 
@@ -100,7 +153,7 @@ Shown only when `status === 'wip'`. Pomodoro Roulette does not show a badge.
 ### CSS
 
 - `.actions`: flex with `gap`; links wrap on narrow viewports
-- Reuse existing `.link` class for both CTAs (no filled primary button in this change)
+- Reuse existing `.link` for both CTAs
 
 ### Unchanged components
 
@@ -110,21 +163,18 @@ Shown only when `status === 'wip'`. Pomodoro Roulette does not show a badge.
 
 ## Tests (`GalleryCard.test.jsx`)
 
-Add cases:
-
-1. Item with `liveUrl` and `githubUrl` → both links visible with correct `href`s
-2. Item with `liveUrl` only → Open app link; no GitHub link
-3. Existing WIP / GitHub-only / displayIndex tests remain passing
-
-Optional: assert link order in DOM (Open app before GitHub) if straightforward.
+1. `liveUrl` + `githubUrl` → both links, correct `href`s, Open app before GitHub
+2. `githubUrl` only (no `liveUrl`) → GitHub link only; no Open app
+3. WIP without URLs → Coming soon
+4. Existing displayIndex / heading tests remain passing
 
 ---
 
 ## Verification
 
-- `npm test` — gallery card tests pass
-- Manual: home `#work` teaser shows Pomodoro first, no WIP badge, both links work
-- Manual: `/gallery` same order; Weather and Not-To-Do still show WIP badge and “Coming soon”
+- `npm test` passes
+- Home `#work`: three cards, Pomodoro first, indices `01`–`03`, Pomodoro has both links; llm_rpg and RateMySoft GitHub only, no WIP badges
+- `/gallery`: five cards; Weather and Not-To-Do at bottom with WIP badge and Coming soon
 
 ---
 
@@ -132,15 +182,17 @@ Optional: assert link order in DOM (Open app before GitHub) if straightforward.
 
 | File | Change |
 |------|--------|
-| `src/data/gallery.js` | Remove Gamble Gauge; add Pomodoro first; reorder |
-| `src/components/GalleryCard/GalleryCard.jsx` | Render `liveUrl` CTA |
+| `src/data/gallery.js` | Five entries; order; featured flags; remove Gamble Gauge |
+| `src/components/GalleryCard/GalleryCard.jsx` | `liveUrl` CTA |
 | `src/components/GalleryCard/GalleryCard.module.css` | Actions flex/gap if needed |
-| `src/components/GalleryCard/GalleryCard.test.jsx` | Live URL cases |
+| `src/components/GalleryCard/GalleryCard.test.jsx` | Live + GitHub-only cases |
 
 ---
 
 ## References
 
-- Live app: https://pomodororoulette-production.up.railway.app/
-- Repo: https://github.com/jc80800/pomodoro_roulette
-- Prior model: [2026-05-16-portfolio-rebrand-design.md](./2026-05-16-portfolio-rebrand-design.md) (`liveUrl` extension noted as Phase 3; implementing now for this card only)
+- https://pomodororoulette-production.up.railway.app/
+- https://github.com/jc80800/pomodoro_roulette
+- https://github.com/jc80800/llm_rpg
+- https://github.com/jc80800/RateMySoft
+- [2026-05-16-portfolio-rebrand-design.md](./2026-05-16-portfolio-rebrand-design.md)
