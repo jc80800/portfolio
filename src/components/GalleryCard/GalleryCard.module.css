@@ -1,0 +1,79 @@
+.card {
+  background: var(--card-bg);
+  border: 1px solid rgba(199, 91, 57, 0.12);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-xs);
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  color: var(--text-primary);
+}
+
+.badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  background: var(--accent-honey);
+  color: var(--text-primary);
+}
+
+.tagline {
+  color: var(--text-muted);
+  margin-bottom: var(--spacing-sm);
+}
+
+.proves {
+  margin-top: var(--spacing-sm);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+.provesLabel {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.actions {
+  margin-top: var(--spacing-md);
+}
+
+.link {
+  display: inline-block;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.link:hover {
+  color: var(--primary-light);
+}
+
+.link:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.soon {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-style: italic;
+}

@@ -1,42 +1,44 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
+import { STUDIO_NAME } from '../../config/brand'
+import KoiMascot from '../KoiMascot/KoiMascot'
 import styles from './Header.module.css'
-import Contact from '../Contact/Contact'
 
 function Header() {
-  const [isContactOpen, setIsContactOpen] = useState(false)
-
-  const openContact = () => setIsContactOpen(true)
-  const closeContact = () => setIsContactOpen(false)
-
   return (
-    <>
-      <header className={styles.header}>
-        <div className={styles.container}>
-          <div className={styles.logo}>
-            <img 
-              src="/logo_200x200.png" 
-              alt="Fufu & Co. Bear Mascot" 
-              className={styles.logoImage}
-            />
-            <span className={styles.logoText}>Fufu & Co.</span>
-          </div>
-          
-          <nav className={styles.nav}>
-            <ul className={styles.navList}>
-              <li><Link to="/" className={styles.navLink}>Home</Link></li>
-              <li><a href="#about" className={styles.navLink}>About</a></li>
-              <li><a href="#work" className={styles.navLink}>Work</a></li>
-              <li><Link to="/handbook" className={styles.navLink}>Handbook</Link></li>
-            </ul>
-          </nav>
-          
-          <button className={styles.ctaButton} onClick={openContact}>Let's Talk</button>
-        </div>
-      </header>
-      
-      <Contact isOpen={isContactOpen} onClose={closeContact} />
-    </>
+    <header className={styles.header}>
+      <div className={styles.container}>
+        <Link to="/" className={styles.logo}>
+          <KoiMascot variant="logo" className={styles.logoImage} />
+          <span className={styles.logoText}>{STUDIO_NAME}</span>
+        </Link>
+
+        <nav className={styles.nav} aria-label="Primary">
+          <ul className={styles.navList}>
+            <li>
+              <NavLink
+                to="/"
+                end
+                className={({ isActive }) =>
+                  [styles.navLink, isActive ? styles.active : ''].filter(Boolean).join(' ')
+                }
+              >
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/gallery"
+                className={({ isActive }) =>
+                  [styles.navLink, isActive ? styles.active : ''].filter(Boolean).join(' ')
+                }
+              >
+                Gallery
+              </NavLink>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
   )
 }
 

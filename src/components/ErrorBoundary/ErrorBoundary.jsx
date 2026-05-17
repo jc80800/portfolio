@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import { STUDIO_NAME } from '../../config/brand'
 import styles from './ErrorBoundary.module.css'
 
 class ErrorBoundary extends Component {
@@ -7,7 +8,7 @@ class ErrorBoundary extends Component {
     this.state = { hasError: false }
   }
 
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError() {
     return { hasError: true }
   }
 
@@ -20,15 +21,17 @@ class ErrorBoundary extends Component {
       return (
         <div className={styles.errorContainer}>
           <div className={styles.errorContent}>
-            <h1 className={styles.errorTitle}>Oops! Something went wrong</h1>
+            <h1 className={styles.errorTitle}>The koi hit a rock</h1>
             <p className={styles.errorMessage}>
-              Don't worry, it's not you - it's me! Something unexpected happened.
+              {STUDIO_NAME} ran into something unexpected. The page is taking a breath—try a
+              refresh and we will swim on.
             </p>
-            <button 
+            <button
+              type="button"
               className={styles.errorButton}
               onClick={() => window.location.reload()}
             >
-              Refresh Page
+              Refresh page
             </button>
           </div>
         </div>

@@ -2,8 +2,8 @@
 
 .about {
   padding: var(--spacing-xl) 0;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
+  background: var(--card-bg);
+  border-top: 1px solid rgba(199, 91, 57, 0.12);
 }
 
 .container {
@@ -17,15 +17,16 @@
   font-weight: 700;
   text-align: center;
   margin-bottom: var(--spacing-xl);
-  background: linear-gradient(135deg, var(--mango-orange) 0%, var(--orange) 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  font-family: var(--font-heading);
 }
 
 .content {
   max-width: 800px;
-  margin: 0 auto var(--spacing-xl) auto;
+  margin: 0 auto;
 }
 
 .text {
@@ -37,185 +38,16 @@
 .description {
   font-size: 1.1rem;
   line-height: 1.7;
-  color: var(--text-medium);
+  color: var(--text-muted);
   text-align: center;
-}
-
-.journeySection {
-  margin-top: var(--spacing-xl);
-}
-
-.journeyTitle {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--text-dark);
-  margin-bottom: var(--spacing-sm);
-  text-align: center;
-}
-
-.journeySubtitle {
-  font-size: 1.1rem;
-  color: var(--text-medium);
-  text-align: center;
-  margin-bottom: var(--spacing-xl);
-  font-style: italic;
-}
-
-.journeyFlow {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: var(--spacing-md);
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.journeyStep {
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: var(--radius-md);
-  padding: var(--spacing-md);
-  border: 2px solid rgba(253, 203, 110, 0.3);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  min-width: 200px;
-  max-width: 220px;
-  text-align: center;
-  position: relative;
-  backdrop-filter: blur(8px);
-}
-
-.journeyStep:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 12px 30px rgba(253, 203, 110, 0.2);
-  border-color: rgba(253, 203, 110, 0.6);
-  background: rgba(255, 255, 255, 0.95);
-}
-
-.stepIcon {
-  font-size: 2.5rem;
-  margin-bottom: var(--spacing-sm);
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-}
-
-.stepTitle {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--text-dark);
-  margin-bottom: var(--spacing-xs);
-}
-
-.stepDescription {
-  font-size: 0.9rem;
-  color: var(--text-medium);
-  line-height: 1.4;
-  margin-bottom: var(--spacing-sm);
-  font-style: italic;
-}
-
-.stepTech {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-xs);
-  justify-content: center;
-}
-
-.techTag {
-  background: linear-gradient(135deg, var(--mango-orange) 0%, var(--orange) 100%);
-  color: white;
-  padding: 0.3rem 0.6rem;
-  border-radius: var(--radius-sm);
-  font-size: 0.75rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  cursor: default;
-}
-
-.techTag:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
-}
-
-.flowArrow {
-  font-size: 1.5rem;
-  color: var(--mango-orange);
-  font-weight: bold;
-  margin: 0 var(--spacing-sm);
-  animation: pulse 2s infinite;
-  filter: drop-shadow(0 2px 4px rgba(255, 107, 53, 0.3));
-}
-
-@keyframes pulse {
-  0%, 100% {
-    opacity: 0.7;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.1);
-  }
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-  .journeyFlow {
-    flex-direction: column;
-    gap: var(--spacing-lg);
-  }
-  
-  .flowArrow {
-    transform: rotate(90deg);
-    margin: var(--spacing-sm) 0;
-  }
 }
 
 @media (max-width: 768px) {
   .title {
     font-size: 2rem;
   }
-  
-  .journeyTitle {
-    font-size: 1.6rem;
-  }
-  
-  .journeySubtitle {
-    font-size: 1rem;
-  }
-  
+
   .description {
     font-size: 1rem;
-  }
-  
-  .journeyStep {
-    min-width: 180px;
-    max-width: 200px;
-    padding: var(--spacing-sm);
-  }
-  
-  .stepIcon {
-    font-size: 2rem;
-  }
-  
-  .stepTitle {
-    font-size: 1rem;
-  }
-  
-  .stepDescription {
-    font-size: 0.85rem;
-  }
-  
-  .techTag {
-    font-size: 0.7rem;
-    padding: 0.25rem 0.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .journeyStep {
-    min-width: 160px;
-    max-width: 180px;
-  }
-  
-  .flowArrow {
-    font-size: 1.2rem;
   }
 }

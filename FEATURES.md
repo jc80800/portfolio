@@ -1,56 +1,54 @@
-# FEATURES.md — Portfolio Roadmap
+# FEATURES.md — Gatewood Lab Roadmap
 
-## ✅ MVP (Now)
+## ✅ Shipped (v1 rebrand)
 
-* [x] Static branding page with your name and tagline
-* [x] Projects grid with links to GitHub repos
-
----
-
-## 🟢 Phase 1 — Small Polish (Professional Shine)
-
-* [ ] **Micro-interactions**: subtle hover animations on buttons and project cards
-* [ ] **Dark mode toggle**: add a light/dark theme switch in the navbar
-* [ ] **Project cards redesign**: include project logos, tags (e.g., `Go`, `React`, `Kubernetes`)
-* [ ] **About section**: add a short story about you, a professional headshot, or FufuBear mascot illustration
-* [ ] **Contact links**: GitHub, LinkedIn, email — styled icons in the footer
+* [x] Gatewood Lab branding + warm palette
+* [x] Gallery data model (`stack`, `proves`, extensible URLs)
+* [x] Home + `/gallery` routes
+* [x] Koi mascot (logo + hero) with transparent PNGs
+* [x] GalleryCard tests (Vitest + Testing Library)
+* [x] Scroll-reveal grid animations + reduced-motion support
+* [x] Footer social links (GitHub, LinkedIn, email)
 
 ---
 
-## 🟡 Phase 2 — Fun Personality (Stand Out)
+## 🟢 Phase 1 — Polish
 
-* [ ] **FufuBear mascot integration**: mascot reacts when hovering over cards (CSS animation or small GIFs)
-* [ ] **Chaos Mode toggle**: a playful alternate theme (colors invert, jokes appear, mascot changes face)
-* [ ] **Easter egg commands**: e.g., type `badminton` in console → bear animation appears
-* [ ] **Embed live demo**: show your Excuse Generator or Badminton Chaos widget directly in the page
-* [ ] **Animated intro**: playful typing animation like a terminal greeting: `> Hello, I’m Jason C.`
-
----
-
-## 🟠 Phase 3 — Technical Flex (Show Engineering Skills)
-
-* [ ] **Interactive architecture diagram**: clickable diagram showing your Go + Kubernetes setup (SVG/Canvas)
-* [ ] **API mode**: expose an endpoint `/api/portfolio` returning JSON version of your site
-* [ ] **Roadmap section**: auto-render `FEATURES.md` into the site for transparency
-* [ ] **GitHub integration**: display live repo stats (stars, last commit date, pinned repos)
-* [ ] **Build badges**: CI/CD or test coverage badge embedded on project cards
+* [ ] **Real gallery URLs** — link Weather, Gamble Gauge, Not-To-Do repos as they ship
+* [ ] **Social config** — your real GitHub/LinkedIn in `src/config/social.js`
+* [ ] **About copy** — replace placeholder bio in `About.jsx`
+* [ ] **SVG favicon** — optional optimized koi mark from PNG
+* [ ] **Footer icons** — SVG icons instead of text links
 
 ---
 
-## 🔵 Phase 4 — Extra Depth (Storytelling)
+## 🟡 Phase 2 — Personality
 
-* [ ] **Dev log/journal**: blog-style posts for how you built projects (with diagrams, DDD notes)
-* [ ] **Experiments page**: showcase unfinished or quirky projects to highlight creativity
-* [ ] **Metrics dashboard**: fun Grafana-style charts (e.g., coding hours, commits per month)
-* [ ] **Visual essays**: inline posts mixing diagrams + commentary (like mini case studies)
-* [ ] **Downloadable resume**: embed a styled PDF resume export
+* [ ] **Koi hover reactions** — glasses slip / derp blink on gallery card hover
+* [ ] **Featured filter** — tag chips when gallery grows past ~6 apps
+* [ ] **Console easter egg** — hidden koi animation command
 
 ---
 
-## 🔴 Phase 5 — Over-Engineered Glory (Playground)
+## 🟠 Phase 3 — Gallery depth
 
-* [ ] **Chaos Mode 2.0**: animated backgrounds, particles, maybe sound effects
-* [ ] **Multiplayer easter egg**: hidden chatroom or simple WebSocket game (bear battles?)
-* [ ] **PWA support**: installable, offline-ready portfolio (with cache strategies)
-* [ ] **Themed modes**: e.g., “Professional Mode” vs “Chaos Mode” vs “Retro Terminal Mode”
-* [ ] **Custom domain + branding**: host at `fufuandco.com` or `ratemysoft.com` for unified identity
+* [ ] **Live app links** — second CTA from `liveUrl` field
+* [ ] **Per-app detail pages** — `/apps/:slug` case studies
+* [ ] **Embed demos** — `embedUrl` iframe for flagship apps
+* [ ] **GitHub integration** — stars / last commit on cards
+
+---
+
+## 🔵 Phase 4 — Studio growth
+
+* [ ] **Dev log** — short build notes per app
+* [ ] **Metrics strip** — commits or ship count (fun, optional)
+* [ ] **Resume PDF** — downloadable export
+
+---
+
+## 🔴 Phase 5 — Playground (optional)
+
+* [ ] **Dragon gate milestone** — mascot evolution when N apps ship
+* [ ] **PWA** — installable portfolio
+* [ ] **Custom domain** — gatewoodlab.com or similar

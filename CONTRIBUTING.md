@@ -1,39 +1,36 @@
-# Contributing to Fufu & Co. Portfolio 🤝
+# Contributing to Gatewood Lab Portfolio
 
-Thank you for your interest in contributing to my personal portfolio! This document outlines how you can help improve the project while respecting the intellectual property rights.
+Thank you for your interest in contributing. This document outlines how you can help while respecting intellectual property.
 
-## 🎯 How You Can Contribute
+## How You Can Contribute
 
-### ✅ **Encouraged Contributions**
+### Encouraged
 
-- **🐛 Bug Reports** - Report any issues you find
-- **💡 Feature Suggestions** - Suggest improvements or new features
-- **📝 Code Improvements** - Enhance performance, accessibility, or code quality
-- **🔧 Documentation** - Improve README, comments, or documentation
-- **🎨 UI/UX Feedback** - Share thoughts on design and user experience
-- **⭐ Star the Repository** - Show your support
+- Bug reports and reproduction steps
+- Feature suggestions aligned with the [roadmap](./FEATURES.md)
+- Performance, accessibility, and code quality improvements
+- Documentation fixes
+- UI/UX feedback
 
-### 📧 **Feedback & Suggestions**
+### Feedback
 
-I welcome all forms of feedback! Feel free to:
-- Open an issue for bugs or feature requests
-- Share your thoughts on the design approach
-- Suggest improvements to the code structure
-- Provide feedback on the user experience
+Open an issue for bugs or ideas, or share feedback on structure and UX.
 
-## 🛡️ Intellectual Property Guidelines
+## Intellectual Property
 
-### ✅ **What You Can Use Freely**
+### Use freely
 
-- **Code Structure** - Component architecture, file organization
-- **Build Configuration** - Vite setup, ESLint, Prettier configuration
-- **CSS Techniques** - Styling approaches, animations, responsive design
-- **Development Workflow** - Git setup, deployment strategies
+- Component architecture and file organization
+- Vite, ESLint, and test setup patterns
+- CSS techniques (tokens, modules, reveal animations)
+- Gallery data schema approach
 
-### ❌ **What Requires Permission**
+### Requires permission
 
-- **"Fufu & Co." Brand Identity** - Name, concept, and brand philosophy
-- **Bear Mascot Design** - Logo, favicon, and associated visual elements
-- **Custom Content** - Specific copy, messaging, and brand voice
+- **Gatewood Lab** brand name and concept
+- **Koi mascot** artwork in `public/mascot/`
+- Studio copy and taglines
 
-**Thank you for respecting these guidelines while contributing to the project!** 🐻✨
+For commercial use of brand assets, contact Jason C.
+
+Thank you for respecting these guidelines.

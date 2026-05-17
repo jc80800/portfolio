@@ -1,0 +1,130 @@
+.wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.img {
+  display: block;
+  object-fit: contain;
+  position: relative;
+  z-index: 1;
+}
+
+.wrap.logo .img {
+  width: 40px;
+  height: 40px;
+}
+
+.wrap.hero .img {
+  width: 100%;
+  max-width: 380px;
+  height: auto;
+  filter: drop-shadow(0 8px 18px rgba(44, 36, 25, 0.07));
+}
+
+/* Gentle swim loop for hero koi */
+.wrap.hero.animated {
+  animation: koi-drift 5s ease-in-out infinite;
+}
+
+.wrap.hero.animated .img {
+  animation: koi-swim 4s ease-in-out infinite;
+  transform-origin: 55% 50%;
+}
+
+.wrap.hero.animated:hover .img {
+  animation: koi-swim 2s ease-in-out infinite, koi-wiggle 0.35s ease-in-out infinite;
+}
+
+.wrap.logo:hover .img {
+  animation: koi-bob 0.6s ease-in-out infinite;
+}
+
+/* Water ripples under hero koi */
+.ripple {
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  width: 48%;
+  height: 12%;
+  border-radius: 50%;
+  border: 2px solid rgba(199, 91, 57, 0.2);
+  transform: translateX(-50%) scale(0.6);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wrap.hero.animated .ripple:nth-of-type(1) {
+  animation: ripple-pulse 4s ease-out infinite;
+}
+
+.wrap.hero.animated .ripple:nth-of-type(2) {
+  animation: ripple-pulse 4s ease-out 2s infinite;
+}
+
+@keyframes koi-drift {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(6px, -10px);
+  }
+}
+
+@keyframes koi-swim {
+  0%,
+  100% {
+    transform: rotate(-3deg) translateX(0) translateY(0) scale(1);
+  }
+  20% {
+    transform: rotate(2deg) translateX(4px) translateY(-6px) scale(1.02);
+  }
+  50% {
+    transform: rotate(-1deg) translateX(-2px) translateY(-8px) scale(1.01);
+  }
+  80% {
+    transform: rotate(3deg) translateX(6px) translateY(-2px) scale(1.02);
+  }
+}
+
+@keyframes koi-wiggle {
+  0%,
+  100% {
+    transform: rotate(-3deg) scale(1.02);
+  }
+  50% {
+    transform: rotate(3deg) scale(1.02);
+  }
+}
+
+@keyframes koi-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes ripple-pulse {
+  0% {
+    transform: translateX(-50%) scale(0.5);
+    opacity: 0.45;
+  }
+  100% {
+    transform: translateX(-50%) scale(1.4);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wrap.hero.animated,
+  .wrap.hero.animated .img,
+  .wrap.logo.animated:hover .img,
+  .wrap.hero.animated .ripple {
+    animation: none !important;
+  }
+}

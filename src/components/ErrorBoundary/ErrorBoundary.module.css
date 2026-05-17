@@ -12,29 +12,30 @@
 .errorContent {
   text-align: center;
   max-width: 500px;
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--card-bg);
   padding: var(--spacing-xl);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
-  border: 1px solid rgba(253, 203, 110, 0.3);
+  border: 1px solid rgba(199, 91, 57, 0.2);
 }
 
 .errorTitle {
   font-size: 2rem;
   font-weight: 700;
-  color: var(--text-dark);
+  font-family: var(--font-heading);
+  color: var(--text-primary);
   margin-bottom: var(--spacing-md);
 }
 
 .errorMessage {
   font-size: 1.1rem;
-  color: var(--text-medium);
+  color: var(--text-muted);
   margin-bottom: var(--spacing-lg);
   line-height: 1.6;
 }
 
 .errorButton {
-  background: linear-gradient(135deg, var(--mango-orange) 0%, var(--orange) 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
   color: white;
   border: none;
   padding: var(--spacing-md) var(--spacing-lg);

@@ -1,19 +1,19 @@
 {
-  "name": "fufu-and-co-portfolio",
+  "name": "gatewood-lab-portfolio",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Fufu & Co. - A junior developer portfolio website showcasing web development projects and learning journey",
+  "description": "Gatewood Lab — portfolio site for small apps, experiments, and the studio gallery",
   "keywords": [
     "portfolio",
     "react",
     "web developer",
     "frontend",
     "vite",
-    "fufu-and-co",
-    "junior developer"
+    "gatewood-lab",
+    "gallery"
   ],
-  "author": "Fufu & Co. <your.email@example.com>",
+  "author": "Gatewood Lab <your.email@example.com>",
   "license": "MIT",
   "homepage": "https://yourdomain.com",
   "scripts": {
@@ -22,16 +22,20 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "format": "prettier --write src/",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "test": "vitest",
+    "test:run": "vitest run"
   },
   "dependencies": {
-    "@emailjs/browser": "^4.4.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.9.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
     "@vitejs/plugin-react": "^5.0.0",
@@ -39,6 +43,9 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.3.0",
-    "vite": "^7.1.2"
+    "happy-dom": "^20.9.0",
+    "jsdom": "^27.0.1",
+    "vite": "^7.1.2",
+    "vitest": "^4.1.6"
   }
 }

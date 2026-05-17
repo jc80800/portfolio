@@ -1,41 +1,38 @@
-# Fufu & Co. Portfolio 🐻
+# Gatewood Lab Portfolio
 
-**Copyright © 2025 Jason C.**r
+**Copyright © 2025 Jason C.**
 
-> A modern, responsive portfolio website showcasing backend engineering expertise with a playful twist. Built with React, Vite, and a dash of "foolish" creativity.
+> A warm, gallery-first portfolio for small apps and experiments. Built with React, Vite, and a chibi koi who probably did not read the docs.
 
-## 📋 About This Project
+## About
 
-This portfolio represents my journey as a wealth-loving software engineer. The idea of this portfolio is to showcase my expertise in software engineering as well as my current career progress through the use of a unique brand identity and a playful approach to different projects to make money.
+**Gatewood Lab** is the umbrella for rapidly shipped micro-apps—weather utilities, questionable gambling helpers, anti-productivity lists, and whatever ships next. The site leads with personality and proves capability through gallery cards (stack tags + what each app demonstrates).
 
-### The "Fufu & Co." Philosophy
+- **Home** — Hero, About, featured gallery teaser  
+- **Gallery** — Full grid with GitHub links (live embeds later)
 
-> "According to sources like Urban Dictionary and Merriam-Webster, 'foo-foo' (or 'foo foo') can refer to a silly or foolish person. It can also describe something pretentious or overly elaborate in style."
+Design spec: [docs/superpowers/specs/2026-05-16-portfolio-rebrand-design.md](./docs/superpowers/specs/2026-05-16-portfolio-rebrand-design.md)
 
-**Fufu & Co.** embodies the philosophy that the most innovative solutions often begin as "foolish" ideas. 
+## Development
 
-My vision for this brand is to be a reflection of my career philosophy and how I approach different projects. As an engineer, I believe being a "fool" is a good thing. It allows more unconventional solutions to come to mind and leads me to be more open to learning and growing, all while having fun and preventing burnout.
+```bash
+npm install
+npm run dev
+npm run test:run
+npm run build
+```
 
----
+Update social links in `src/config/social.js` and gallery entries in `src/data/gallery.js` before deploy.
 
-## 📚 Learning Resources
+## Contributing
 
-For detailed technical documentation, advanced CSS techniques, and implementation notes, see [LEARNING-NOTES.md](./LEARNING-NOTES.md). Note: These are all AI generated, I would double check :P
-
----
-
-## 🤝 Contributing
-
-While this is a personal portfolio, I welcome feedback and suggestions! Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed guidelines on how to contribute while respecting intellectual property rights.
-
-**Note**: The "Fufu & Co." brand identity and associated creative elements are protected. Please provide attribution if using this code for your own projects.
+See [CONTRIBUTING.md](./CONTRIBUTING.md). The **Gatewood Lab** name, koi mascot art, and studio copy are protected brand assets; code structure and techniques are open for learning.
 
 ---
 
 <div align="center">
 
-**Made with ❤️ and 🐻 by Fufu & Co... and Cursor :P**
+**Made with care at Gatewood Lab**
 
-*Turning "foolish" ideas into brilliant reality*
+*Still swimming upstream.*
 
-</div>

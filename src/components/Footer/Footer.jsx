@@ -1,3 +1,6 @@
+import { Link } from 'react-router-dom'
+import { STUDIO_NAME, TAGLINE } from '../../config/brand'
+import { SOCIAL } from '../../config/social'
 import styles from './Footer.module.css'
 
 function Footer() {
@@ -6,37 +9,54 @@ function Footer() {
       <div className={styles.container}>
         <div className={styles.content}>
           <div className={styles.brand}>
-            <h3 className={styles.logo}>Fufu & Co.</h3>
-            <p className={styles.tagline}>
-              Turning "foolish" ideas into brilliant reality.
-            </p>
+            <h2 className={styles.logo}>{STUDIO_NAME}</h2>
+            <p className={styles.tagline}>{TAGLINE}</p>
           </div>
-          
-          <div className={styles.links}>
-            <div className={styles.linkGroup}>
-              <h4 className={styles.linkTitle}>Navigation</h4>
-              <a href="#home" className={styles.link}>Home</a>
-              <a href="#about" className={styles.link}>About</a>
-              <a href="#projects" className={styles.link}>Work</a>
-              <a href="#contact" className={styles.link}>Contact</a>
-            </div>
-            
-            <div className={styles.linkGroup}>
-              <h4 className={styles.linkTitle}>Connect</h4>
-              <a href="#" className={styles.link}>LinkedIn</a>
-              <a href="#" className={styles.link}>GitHub</a>
-              <a href="#" className={styles.link}>Twitter</a>
-              <a href="#" className={styles.link}>Email</a>
-            </div>
+
+          <div className={styles.social}>
+            <h3 className={styles.socialTitle}>Elsewhere</h3>
+            <ul className={styles.socialList}>
+              <li>
+                <a
+                  href={SOCIAL.github}
+                  className={styles.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  GitHub
+                </a>
+              </li>
+              <li>
+                <a
+                  href={SOCIAL.linkedin}
+                  className={styles.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  LinkedIn
+                </a>
+              </li>
+              <li>
+                <a href={SOCIAL.email} className={styles.link}>
+                  Email
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
-        
+
         <div className={styles.bottom}>
-          <p className={styles.copyright}>© 2025 Fufu & Co. All rights reserved.</p>
-          <div className={styles.legal}>
-            <a href="#" className={styles.legalLink}>Privacy Policy</a>
-            <a href="#" className={styles.legalLink}>Terms of Service</a>
-          </div>
+          <p className={styles.copyright}>
+            © {new Date().getFullYear()} {STUDIO_NAME}
+          </p>
+          <nav className={styles.meta} aria-label="Footer">
+            <Link to="/" className={styles.metaLink}>
+              Home
+            </Link>
+            <Link to="/gallery" className={styles.metaLink}>
+              Gallery
+            </Link>
+          </nav>
         </div>
       </div>
     </footer>
