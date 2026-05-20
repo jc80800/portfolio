@@ -22,5 +22,7 @@ export const ABOUT_TITLE = 'About Gatewood Lab'
 
 export const ABOUT_BODY = [
   'Gatewood Lab is my personal space for building small software experiments, tools, and prototypes.',
-  'I’m a backend/platform engineer interested in systems, infrastructure, and turning odd ideas into working products. Some projects are polished, some are still growing, and each one helps me practice building better software.',
+  'This section is probably the only section you will see that is not AI generated. I\'m a backend/platform engineer who\'s absolutely terrible with UI/UX designs.',
+  'Thankfully with new agentic-flows / vibe-coding tools, I feel like a lot of us who are in the same situation, can really start building interesting ideas without being gated by frontend domain knowledge.',
+  'This is a collection of some of the weird and odd things I\'ve built or intend to complete. I appreciate you taking the time to look at my work and I hope you find some funny moments as well. 🫰 ',
 ]
