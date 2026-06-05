@@ -8,6 +8,7 @@ import {
   selectPosts,
   getAdjacent,
 } from './journal'
+import * as FirstPost from '../content/journal/2026-06-05-paged-at-3am.mdx'
 
 const rawWithFm = `---
 title: "X"
@@ -40,7 +41,7 @@ describe('journal data helpers', () => {
       frontmatter: { title: 'T', date: '2026-06-05', summary: 'S', tags: ['a'] },
       default: () => null,
     }
-    const post = buildPost('../content/journal/2026-06-05-t.mdx', mod, rawWithFm)
+    const post = buildPost('../content/journal/2026-06-05-t.mdx', mod)
     expect(post).toMatchObject({ slug: 't', title: 'T', summary: 'S', tags: ['a'], published: true })
     expect(post.readTime).toBeGreaterThanOrEqual(1)
     expect(typeof post.Component).toBe('function')
@@ -48,12 +49,12 @@ describe('journal data helpers', () => {
 
   it('throws when required frontmatter is missing', () => {
     const mod = { frontmatter: { title: 'T' }, default: () => null }
-    expect(() => buildPost('../content/journal/2026-06-05-t.mdx', mod, '')).toThrow(/missing required frontmatter/)
+    expect(() => buildPost('../content/journal/2026-06-05-t.mdx', mod)).toThrow(/missing required frontmatter/)
   })
 
   it('defaults published to true and tags to empty array', () => {
     const mod = { frontmatter: { title: 'T', date: '2026-06-05', summary: 'S' }, default: () => null }
-    const post = buildPost('../content/journal/2026-06-05-t.mdx', mod, '')
+    const post = buildPost('../content/journal/2026-06-05-t.mdx', mod)
     expect(post.published).toBe(true)
     expect(post.tags).toEqual([])
   })
@@ -91,5 +92,10 @@ describe('journal data helpers', () => {
     expect(getAdjacent(ordered, 'c')).toEqual({ prev: null, next: { slug: 'b' } })
     expect(getAdjacent(ordered, 'a')).toEqual({ prev: { slug: 'b' }, next: null })
     expect(getAdjacent(ordered, 'missing')).toEqual({ prev: null, next: null })
+  })
+
+  it('injects numeric readingTime into post frontmatter via the remark plugin', () => {
+    expect(typeof FirstPost.frontmatter.readingTime).toBe('number')
+    expect(FirstPost.frontmatter.readingTime).toBeGreaterThan(0)
   })
 })

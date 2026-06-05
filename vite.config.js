@@ -4,6 +4,7 @@ import mdx from '@mdx-js/rollup'
 import remarkGfm from 'remark-gfm'
 import remarkFrontmatter from 'remark-frontmatter'
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
+import remarkReadingTime from './src/lib/remarkReadingTime.js'
 
 export default defineConfig({
   plugins: [
@@ -12,6 +13,7 @@ export default defineConfig({
       ...mdx({
         remarkPlugins: [
           remarkFrontmatter,
+          remarkReadingTime,
           [remarkMdxFrontmatter, { name: 'frontmatter' }],
           remarkGfm,
         ],

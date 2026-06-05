@@ -1,9 +1,4 @@
 const modules = import.meta.glob('../content/journal/*.mdx', { eager: true })
-const rawModules = import.meta.glob('../content/journal/*.mdx', {
-  eager: true,
-  query: '?raw',
-  import: 'default',
-})
 
 export function deriveSlug(path) {
   const file = path.split('/').pop().replace(/\.mdx$/, '')
@@ -20,7 +15,7 @@ export function computeReadTime(raw) {
   return Math.max(1, Math.round(words / 200))
 }
 
-export function buildPost(path, mod, raw = '') {
+export function buildPost(path, mod) {
   const fm = mod.frontmatter ?? {}
   if (!fm.title || !fm.date || !fm.summary) {
     throw new Error(
@@ -34,7 +29,7 @@ export function buildPost(path, mod, raw = '') {
     summary: fm.summary,
     tags: fm.tags ?? [],
     published: fm.published ?? true,
-    readTime: computeReadTime(raw),
+    readTime: fm.readingTime ?? 1,
     Component: mod.default,
   }
 }
@@ -61,7 +56,7 @@ export function getAdjacent(orderedPosts, slug) {
 }
 
 const allPosts = Object.entries(modules).map(([path, mod]) =>
-  buildPost(path, mod, rawModules[path] ?? '')
+  buildPost(path, mod)
 )
 
 export function getAllPosts({ includeDrafts = import.meta.env.DEV } = {}) {
