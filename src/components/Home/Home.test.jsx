@@ -18,4 +18,10 @@ describe('Home', () => {
     expect(h1s).toHaveLength(1)
     expect(h1s[0]).toHaveAccessibleName('Gatewood Lab')
   })
+
+  it('renders the Journal invitation linking to /journal', () => {
+    renderHome()
+    const cta = screen.getByRole('link', { name: /follow the climb/i })
+    expect(cta).toHaveAttribute('href', '/journal')
+  })
 })
