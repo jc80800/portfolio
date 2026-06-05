@@ -26,3 +26,14 @@ export const ABOUT_BODY = [
   'Thankfully with new agentic-flows / vibe-coding tools, I feel like a lot of us who are in the same situation, can really start building interesting ideas without being gated by frontend domain knowledge.',
   'This is a collection of some of the weird and odd things I\'ve built or intend to complete. I appreciate you taking the time to look at my work and I hope you find some funny moments as well. 🫰 ',
 ]
+
+export const JOURNAL_NAV_LABEL = 'Journal'
+export const JOURNAL_SERIES_TITLE = 'The Road to Senior, One Incident at a Time'
+export const JOURNAL_EYEBROW = 'The Journal'
+export const JOURNAL_EYEBROW_PAGE = 'Upstream'
+export const JOURNAL_INVITE_BODY =
+  'A running series on the climb from mid-level to senior — one incident, postmortem, and hard-won lesson at a time.'
+export const JOURNAL_INVITE_CTA = 'Follow the climb'
+export const JOURNAL_EMPTY = 'The first entry is still swimming upstream…'
+export const JOURNAL_NOT_FOUND = 'This entry drifted away…'
+export const JOURNAL_DRAGON_GLYPH = '龙'
