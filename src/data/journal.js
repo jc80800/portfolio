@@ -15,7 +15,8 @@ export function stripFrontmatter(raw) {
 }
 
 export function computeReadTime(raw) {
-  const words = stripFrontmatter(raw).trim().split(/\s+/).filter(Boolean).length
+  const text = typeof raw === 'string' ? stripFrontmatter(raw) : ''
+  const words = text.trim().split(/\s+/).filter(Boolean).length
   return Math.max(1, Math.round(words / 200))
 }
 
