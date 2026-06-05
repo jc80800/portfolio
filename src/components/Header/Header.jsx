@@ -35,6 +35,16 @@ function Header() {
                 Gallery
               </NavLink>
             </li>
+            <li>
+              <NavLink
+                to="/journal"
+                className={({ isActive }) =>
+                  [styles.navLink, isActive ? styles.active : ''].filter(Boolean).join(' ')
+                }
+              >
+                Journal
+              </NavLink>
+            </li>
           </ul>
         </nav>
       </div>
