@@ -1,0 +1,32 @@
+.wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.button {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--primary);
+  background: transparent;
+  border: 1px solid var(--accent-honey);
+  border-radius: var(--radius-lg);
+  padding: 6px 16px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.button:hover {
+  background: var(--bg-peach);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.status {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
