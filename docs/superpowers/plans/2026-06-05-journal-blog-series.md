@@ -10,6 +10,8 @@
 
 **Spec:** `docs/superpowers/specs/2026-06-05-journal-blog-series-design.md`
 
+> **Implementation note (read-time mechanism changed during execution):** The original plan computed read time at runtime from a second `import.meta.glob(..., { query: '?raw' })`. This is unreliable with `@mdx-js/rollup`, whose transform does `const [path] = id.split('?')` and therefore compiles `*.mdx?raw` as MDX (not raw text) in both the Vite build and Vitest — yielding a non-string and a constant 1-minute read time. The shipped implementation instead computes word count at compile time via a small `src/lib/remarkReadingTime.js` remark plugin that injects `readingTime` into the YAML frontmatter (wired between `remarkFrontmatter` and `remarkMdxFrontmatter`). `src/data/journal.js` reads `frontmatter.readingTime`; the `?raw` glob was removed. The pure helpers `stripFrontmatter`/`computeReadTime` remain exported and unit-tested.
+
 ---
 
 ## File Structure
