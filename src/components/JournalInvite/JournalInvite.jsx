@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom'
 import {
-  JOURNAL_DRAGON_GLYPH,
   JOURNAL_EYEBROW,
   JOURNAL_INVITE_BODY,
   JOURNAL_INVITE_CTA,
   JOURNAL_SERIES_TITLE,
+  JOURNAL_STUDY_GLYPH,
 } from '../../config/brand'
 import { useInView } from '../../hooks/useInView'
 import styles from './JournalInvite.module.css'
@@ -19,7 +19,7 @@ function JournalInvite() {
         className={`${styles.inner} reveal ${inView ? 'reveal--visible' : ''}`}
       >
         <span className={styles.glyph} aria-hidden="true">
-          {JOURNAL_DRAGON_GLYPH}
+          {JOURNAL_STUDY_GLYPH}
         </span>
         <p className={styles.eyebrow}>{JOURNAL_EYEBROW}</p>
         <h2 id="journal-invite-heading" className={styles.title}>

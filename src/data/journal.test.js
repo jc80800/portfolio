@@ -7,8 +7,9 @@ import {
   sortByDateDesc,
   selectPosts,
   getAdjacent,
+  groupPostsByConcept,
 } from './journal'
-import * as FirstPost from '../content/journal/2026-06-05-paged-at-3am.mdx'
+import * as TemplatePost from '../content/journal/_templates/post.mdx'
 
 const rawWithFm = `---
 title: "X"
@@ -18,7 +19,7 @@ one two three four five`
 
 describe('journal data helpers', () => {
   it('derives slug from filename, stripping date prefix and extension', () => {
-    expect(deriveSlug('../content/journal/2026-06-05-paged-at-3am.mdx')).toBe('paged-at-3am')
+    expect(deriveSlug('../content/journal/2026-06-01-my-post.mdx')).toBe('my-post')
   })
 
   it('strips a leading frontmatter block', () => {
@@ -38,13 +39,45 @@ describe('journal data helpers', () => {
 
   it('builds a post object from a module + raw source', () => {
     const mod = {
-      frontmatter: { title: 'T', date: '2026-06-05', summary: 'S', tags: ['a'] },
+      frontmatter: {
+        title: 'T',
+        date: '2026-06-05',
+        summary: 'S',
+        concept: 'On-Call',
+        tags: ['a'],
+      },
       default: () => null,
     }
     const post = buildPost('../content/journal/2026-06-05-t.mdx', mod)
-    expect(post).toMatchObject({ slug: 't', title: 'T', summary: 'S', tags: ['a'], published: true })
+    expect(post).toMatchObject({
+      slug: 't',
+      title: 'T',
+      summary: 'S',
+      concept: 'On-Call',
+      conceptSlug: 'on-call',
+      tags: ['a'],
+      published: true,
+    })
     expect(post.readTime).toBeGreaterThanOrEqual(1)
     expect(typeof post.Component).toBe('function')
+  })
+
+  it('defaults concept to General when omitted', () => {
+    const mod = { frontmatter: { title: 'T', date: '2026-06-05', summary: 'S' }, default: () => null }
+    const post = buildPost('../content/journal/2026-06-05-t.mdx', mod)
+    expect(post.concept).toBe('General')
+    expect(post.conceptSlug).toBe('general')
+  })
+
+  it('groups posts by concept', () => {
+    const posts = [
+      { concept: 'B', conceptSlug: 'b', date: '2026-06-12', slug: 'x' },
+      { concept: 'A', conceptSlug: 'a', date: '2026-06-05', slug: 'y' },
+      { concept: 'A', conceptSlug: 'a', date: '2026-06-01', slug: 'z' },
+    ]
+    const tree = groupPostsByConcept(posts)
+    expect(tree.map((g) => g.name)).toEqual(['A', 'B'])
+    expect(tree[0].posts.map((p) => p.slug)).toEqual(['y', 'z'])
   })
 
   it('throws when required frontmatter is missing', () => {
@@ -95,7 +128,7 @@ describe('journal data helpers', () => {
   })
 
   it('injects numeric readingTime into post frontmatter via the remark plugin', () => {
-    expect(typeof FirstPost.frontmatter.readingTime).toBe('number')
-    expect(FirstPost.frontmatter.readingTime).toBeGreaterThan(0)
+    expect(typeof TemplatePost.frontmatter.readingTime).toBe('number')
+    expect(TemplatePost.frontmatter.readingTime).toBeGreaterThan(0)
   })
 })

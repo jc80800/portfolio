@@ -21,7 +21,7 @@ describe('Home', () => {
 
   it('renders the Journal invitation linking to /journal', () => {
     renderHome()
-    const cta = screen.getByRole('link', { name: /follow the climb/i })
+    const cta = screen.getByRole('link', { name: /browse the concepts/i })
     expect(cta).toHaveAttribute('href', '/journal')
   })
 })

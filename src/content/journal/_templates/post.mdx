@@ -1,0 +1,31 @@
+---
+title: "Your Post Title"
+date: "2026-01-01"
+summary: "One-line teaser shown in the Journal index."
+concept: "Your Concept Name"
+tags: ["optional-tag"]
+published: true
+---
+
+## The idea
+
+A feature toggle lets you merge code to main and keep it invisible until you're ready.
+The deploy ships; the behavior stays off. If something breaks, you flip a switch —
+not a revert commit at 4PM on a Friday.
+
+## What I use them for
+
+**Release toggles** hide work-in-progress from users. **Ops toggles** kill a hot path
+without redeploying. **Experiment toggles** route a slice of traffic to a new path so
+you can compare error rates side by side.
+
+## What I got wrong early
+
+I treated toggles as permanent configuration. They aren't. Every flag needs an owner
+and a removal date, or you end up with fifteen layers of `if (flagX && !flagY)` that
+nobody dares touch.
+
+## The rule I follow now
+
+Ship dark. Enable in staging first. Enable for yourself in prod. Then a small cohort.
+Delete the toggle once the feature is the default — the cleanup is part of the work.

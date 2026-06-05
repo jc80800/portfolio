@@ -15,6 +15,14 @@ export function computeReadTime(raw) {
   return Math.max(1, Math.round(words / 200))
 }
 
+export function slugifyConcept(name) {
+  return String(name)
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .trim()
+    .replace(/\s+/g, '-')
+}
+
 export function buildPost(path, mod) {
   const fm = mod.frontmatter ?? {}
   if (!fm.title || !fm.date || !fm.summary) {
@@ -22,16 +30,36 @@ export function buildPost(path, mod) {
       `Journal post ${path} is missing required frontmatter (title, date, summary)`
     )
   }
+  const concept = fm.concept ?? 'General'
   return {
     slug: deriveSlug(path),
     title: fm.title,
     date: fm.date,
     summary: fm.summary,
+    concept,
+    conceptSlug: slugifyConcept(concept),
     tags: fm.tags ?? [],
     published: fm.published ?? true,
     readTime: fm.readingTime ?? 1,
     Component: mod.default,
   }
+}
+
+export function groupPostsByConcept(posts) {
+  const map = new Map()
+  for (const post of posts) {
+    const key = post.conceptSlug
+    if (!map.has(key)) {
+      map.set(key, { name: post.concept, slug: post.conceptSlug, posts: [] })
+    }
+    map.get(key).posts.push(post)
+  }
+  return [...map.values()]
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .map((group) => ({
+      ...group,
+      posts: sortByDateDesc(group.posts),
+    }))
 }
 
 export function sortByDateDesc(posts) {
@@ -69,4 +97,8 @@ export function getPostBySlug(slug) {
 
 export function getAdjacentPosts(slug) {
   return getAdjacent(getAllPosts(), slug)
+}
+
+export function getConceptTree({ includeDrafts = import.meta.env.DEV } = {}) {
+  return groupPostsByConcept(getAllPosts({ includeDrafts }))
 }
