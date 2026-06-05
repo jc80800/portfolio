@@ -33,6 +33,9 @@ describe('Journal index', () => {
     getAllPosts.mockReturnValue([])
     renderJournal()
     expect(screen.getByText(/still swimming upstream/i)).toBeInTheDocument()
-    expect(screen.queryByRole('link', { name: /\/journal\// })).not.toBeInTheDocument()
+    const postLinks = screen
+      .queryAllByRole('link')
+      .filter((el) => el.getAttribute('href')?.startsWith('/journal/'))
+    expect(postLinks).toHaveLength(0)
   })
 })
