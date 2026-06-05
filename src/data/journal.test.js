@@ -24,6 +24,11 @@ describe('journal data helpers', () => {
     expect(stripFrontmatter(rawWithFm).trim()).toBe('one two three four five')
   })
 
+  it('strips a CRLF frontmatter block', () => {
+    const crlf = '---\r\ntitle: "X"\r\n---\r\none two'
+    expect(stripFrontmatter(crlf).trim()).toBe('one two')
+  })
+
   it('computes read time as at least 1 minute', () => {
     expect(computeReadTime(rawWithFm)).toBe(1)
     const long = '---\na: b\n---\n' + 'word '.repeat(450)
@@ -60,6 +65,15 @@ describe('journal data helpers', () => {
       { slug: 'c', date: '2026-06-12' },
     ]
     expect(sortByDateDesc(posts).map((p) => p.slug)).toEqual(['c', 'a', 'b'])
+  })
+
+  it('does not mutate the input array', () => {
+    const input = [
+      { slug: 'b', date: '2026-06-05' },
+      { slug: 'a', date: '2026-06-05' },
+    ]
+    sortByDateDesc(input)
+    expect(input.map((p) => p.slug)).toEqual(['b', 'a'])
   })
 
   it('selectPosts excludes drafts unless includeDrafts is true', () => {
