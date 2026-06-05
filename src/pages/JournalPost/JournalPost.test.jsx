@@ -37,6 +37,7 @@ describe('JournalPost', () => {
     expect(screen.getByText('Body content here')).toBeInTheDocument()
     expect(screen.getByText(/4 min read/i)).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /post b/i })).toHaveAttribute('href', '/journal/b')
+    expect(screen.getByText('x')).toBeInTheDocument()
   })
 
   it('renders a not-found state for an unknown slug', () => {

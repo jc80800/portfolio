@@ -63,7 +63,7 @@ function JournalPost() {
                 </ul>
               )}
             </header>
-            <div className={styles.body}>
+            <div>
               <MDXProvider components={mdxComponents}>
                 <Body />
               </MDXProvider>
@@ -75,7 +75,7 @@ function JournalPost() {
           </footer>
         </div>
         <aside className={styles.aside}>
-          <TableOfContents articleRef={articleRef} />
+          <TableOfContents key={slug} articleRef={articleRef} />
         </aside>
       </div>
     </>
