@@ -8,15 +8,8 @@ import TableOfContents from '../../components/TableOfContents/TableOfContents'
 import { mdxComponents } from '../../components/MdxContent/mdxComponents'
 import { JOURNAL_NOT_FOUND } from '../../config/brand'
 import { getAdjacentPosts, getPostBySlug } from '../../data/journal'
+import { formatDate } from '../../lib/formatDate'
 import styles from './JournalPost.module.css'
-
-function formatDate(iso) {
-  return new Date(iso + 'T00:00:00').toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  })
-}
 
 function JournalPost() {
   const { slug } = useParams()

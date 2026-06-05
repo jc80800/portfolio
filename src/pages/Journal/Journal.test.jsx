@@ -38,4 +38,12 @@ describe('Journal index', () => {
       .filter((el) => el.getAttribute('href')?.startsWith('/journal/'))
     expect(postLinks).toHaveLength(0)
   })
+
+  it('marks unpublished entries with a Draft pill', () => {
+    getAllPosts.mockReturnValue([
+      { slug: 'd', title: 'Draft Post', date: '2026-06-01', summary: 'S', tags: [], readTime: 1, published: false },
+    ])
+    renderJournal()
+    expect(screen.getByText(/^draft$/i)).toBeInTheDocument()
+  })
 })

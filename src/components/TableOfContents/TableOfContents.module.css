@@ -38,6 +38,11 @@
   outline-offset: 2px;
 }
 
+.active {
+  color: var(--primary);
+  font-weight: 600;
+}
+
 @media (min-width: 1024px) {
   .toc {
     display: block;

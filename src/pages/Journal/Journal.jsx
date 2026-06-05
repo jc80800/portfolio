@@ -7,15 +7,8 @@ import {
 } from '../../config/brand'
 import { getAllPosts } from '../../data/journal'
 import { useInView } from '../../hooks/useInView'
+import { formatDate } from '../../lib/formatDate'
 import styles from './Journal.module.css'
-
-function formatDate(iso) {
-  return new Date(iso + 'T00:00:00').toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  })
-}
 
 function TimelineEntry({ post }) {
   const { ref, inView } = useInView()
@@ -35,6 +28,9 @@ function TimelineEntry({ post }) {
           <Link to={`/journal/${post.slug}`} className={styles.entryLink}>
             {post.title}
           </Link>
+          {post.published === false && (
+            <span className={styles.draft}>Draft</span>
+          )}
         </h2>
         <p className={styles.summary}>{post.summary}</p>
         {post.tags.length > 0 && (
@@ -67,7 +63,10 @@ function Journal() {
       </header>
 
       {posts.length === 0 ? (
-        <p className={styles.empty}>{JOURNAL_EMPTY}</p>
+        <div className={styles.empty}>
+          <KoiMascot variant="hero" className={styles.emptyMascot} />
+          <p className={styles.emptyText}>{JOURNAL_EMPTY}</p>
+        </div>
       ) : (
         <ol className={styles.timeline}>
           {posts.map((post) => (

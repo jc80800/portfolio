@@ -44,9 +44,20 @@
 }
 
 .empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
   text-align: center;
-  color: var(--text-muted);
   padding: var(--spacing-xl) 0;
+}
+
+.emptyMascot {
+  width: 120px;
+}
+
+.emptyText {
+  color: var(--text-muted);
 }
 
 .timeline {
@@ -116,6 +127,19 @@
   outline: 2px solid var(--primary);
   outline-offset: 2px;
   border-radius: 2px;
+}
+
+.draft {
+  margin-left: var(--spacing-xs);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--bg-cream);
+  background: var(--primary);
+  padding: 2px 8px;
+  border-radius: var(--radius-lg);
+  vertical-align: middle;
 }
 
 .summary {

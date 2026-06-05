@@ -1,5 +1,5 @@
 import { Link, NavLink } from 'react-router-dom'
-import { STUDIO_NAME } from '../../config/brand'
+import { JOURNAL_NAV_LABEL, STUDIO_NAME } from '../../config/brand'
 import KoiMascot from '../KoiMascot/KoiMascot'
 import styles from './Header.module.css'
 
@@ -42,7 +42,7 @@ function Header() {
                   [styles.navLink, isActive ? styles.active : ''].filter(Boolean).join(' ')
                 }
               >
-                Journal
+                {JOURNAL_NAV_LABEL}
               </NavLink>
             </li>
           </ul>
