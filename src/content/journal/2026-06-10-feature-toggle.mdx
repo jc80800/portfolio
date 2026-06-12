@@ -7,6 +7,8 @@ tags: ["feature-toggles", "feature-flags"]
 published: true
 ---
 
+import featureToggleDiagram from './images/feature-toggle-architecture.png'
+
 ## The idea
 
 When I first joined my first company as an intern, one of the most interesting
@@ -35,7 +37,10 @@ we don't really think about changing an if condition dynamically. Yes we can rea
 different. But what if that `if condition` can make an API call to a remote server that stores a boolean value? And what if that
 boolean value can then be changed manually?
 
-![Application fetches toggle values from the toggle server on a poll interval; ops updates flags via POST. A local cache sits on the application side.](/journal/feature-toggle-architecture.png)
+<img
+  src={featureToggleDiagram}
+  alt="Application fetches toggle values from the toggle server on a poll interval; ops updates flags via POST. A local cache sits on the application side."
+/>
 
 That's what a feature toggle is. It's a simple API call to a remote server that stores a boolean value that can be
 modified live. The remote server can change the value however they want; usually through a web interface or a REST API. The
