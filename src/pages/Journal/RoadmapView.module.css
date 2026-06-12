@@ -1,0 +1,312 @@
+.roadmap {
+  --journal-ink: #23352a;
+  --journal-sage: #70835f;
+  --journal-line: rgba(88, 69, 51, 0.16);
+
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 5vw, 3rem);
+}
+
+.intro {
+  color: var(--text-muted);
+  font-size: 0.98rem;
+  line-height: 1.7;
+  max-width: 58ch;
+}
+
+.sectionTitle {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--journal-sage);
+  margin-bottom: var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.sectionTitle::after {
+  content: "";
+  flex: 1;
+  max-width: 220px;
+  height: 1px;
+  background: var(--journal-line);
+}
+
+/* --- Main path --- */
+
+.path {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.25rem, 3vw, 2rem);
+}
+
+.path::before {
+  content: "";
+  position: absolute;
+  top: 22px;
+  bottom: 22px;
+  left: 21px;
+  width: 2px;
+  background: linear-gradient(var(--primary), var(--journal-sage));
+  opacity: 0.45;
+}
+
+.stage {
+  position: relative;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: var(--spacing-md);
+  align-items: start;
+}
+
+.marker {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--journal-sage);
+  background: var(--card-bg);
+  border: 2px solid rgba(112, 131, 95, 0.5);
+  border-radius: 50%;
+  box-shadow: 0 6px 18px rgba(44, 36, 25, 0.08);
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.markerActive {
+  color: var(--bg-cream);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  border-color: transparent;
+}
+
+/* --- Topic cards (shared by stages and branches) --- */
+
+.card {
+  position: relative;
+  background: var(--card-bg);
+  border: 1px solid rgba(88, 69, 51, 0.08);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 14px 45px rgba(44, 36, 25, 0.06);
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: var(--journal-sage);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.card:hover {
+  border-color: rgba(112, 131, 95, 0.34);
+  box-shadow: 0 20px 55px rgba(44, 36, 25, 0.1);
+  transform: translateY(-2px);
+}
+
+.card:hover::before,
+.cardExpanded::before {
+  opacity: 1;
+}
+
+.cardExpanded {
+  border-color: rgba(199, 91, 57, 0.26);
+}
+
+.cardBranch {
+  border-style: dashed;
+  border-color: rgba(112, 131, 95, 0.32);
+  box-shadow: none;
+}
+
+.cardBranch:hover,
+.cardBranch.cardExpanded {
+  border-style: solid;
+}
+
+.cardButton {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: clamp(1.1rem, 2.5vw, 1.5rem) clamp(1.1rem, 3vw, 1.75rem);
+}
+
+.cardButton:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: -2px;
+  border-radius: var(--radius-sm);
+}
+
+.cardHeading {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.cardTitle {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  transition: color 0.2s ease;
+}
+
+.card:hover .cardTitle,
+.cardExpanded .cardTitle {
+  color: var(--primary);
+}
+
+.cardBlurb {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  max-width: 52ch;
+}
+
+.cardAside {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex-shrink: 0;
+  padding-top: 0.2rem;
+}
+
+.count {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  white-space: nowrap;
+  color: var(--journal-ink);
+  background: rgba(112, 131, 95, 0.1);
+  border: 1px solid rgba(112, 131, 95, 0.18);
+  padding: 1px 7px;
+  border-radius: var(--radius-lg);
+}
+
+.chevron {
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid var(--journal-sage);
+  border-bottom: 2px solid var(--journal-sage);
+  transform: rotate(45deg);
+  margin-top: -4px;
+  transition: transform 0.2s ease;
+}
+
+.chevronOpen {
+  transform: rotate(225deg);
+  margin-top: 4px;
+}
+
+/* --- Expanded topic panel --- */
+
+.panel {
+  border-top: 1px dashed rgba(112, 131, 95, 0.28);
+  padding: var(--spacing-sm) clamp(1.1rem, 3vw, 1.75rem) var(--spacing-md);
+}
+
+.topicEmpty {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  padding-top: var(--spacing-xs);
+}
+
+.topicPosts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.topicPostLink {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.25rem var(--spacing-sm);
+  padding: 0.55rem 0.6rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.topicPostLink:hover {
+  background: rgba(112, 131, 95, 0.08);
+  transform: translateX(2px);
+}
+
+.topicPostLink:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.topicPostTitle {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.topicPostLink:hover .topicPostTitle {
+  color: var(--journal-ink);
+  text-decoration: underline;
+  text-decoration-color: rgba(199, 91, 57, 0.34);
+  text-underline-offset: 0.18em;
+}
+
+.topicPostMeta {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* --- Side trails --- */
+
+.branchIntro {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  max-width: 58ch;
+  margin: calc(-1 * var(--spacing-sm)) 0 var(--spacing-lg);
+}
+
+.branches {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-md);
+  align-items: start;
+}
+
+.branch {
+  min-width: 0;
+}
+
+@media (min-width: 1024px) {
+  .branches {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

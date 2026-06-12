@@ -33,11 +33,28 @@ export const JOURNAL_EYEBROW = 'The Journal'
 export const JOURNAL_EYEBROW_PAGE = 'Concepts'
 export const JOURNAL_INTRO =
   'Notes I write while learning — organized by concept, for teaching past-me and anyone curious enough to follow along.'
-export const JOURNAL_SIDEBAR_TITLE = 'Concepts'
-export const JOURNAL_ALL_CONCEPTS = 'All notes'
+export const JOURNAL_EDITORIAL_NOTE =
+  'None of these are AI-generated — every note is written by hand, grammar-checked only.'
+export const JOURNAL_SERIES_NOTE_BEFORE =
+  'This series can kinda be read in any order, blog-style — but for those looking for a specific sequence, check out the '
+export const JOURNAL_SERIES_NOTE_LINK = 'roadmap'
+export const JOURNAL_SERIES_NOTE_AFTER = ' in the sidebar.'
+export const JOURNAL_VIEWS_TITLE = 'Browse'
+export const JOURNAL_VIEW_ALL = 'All notes'
+export const JOURNAL_VIEW_ROADMAP = 'Roadmap'
 export const JOURNAL_INVITE_BODY =
   'A concept-tree of research and teaching notes — backend craft, incidents, and things I had to learn the hard way.'
 export const JOURNAL_INVITE_CTA = 'Browse the concepts'
 export const JOURNAL_EMPTY = 'No notes yet — the first concept is still taking shape…'
 export const JOURNAL_NOT_FOUND = 'This entry drifted away…'
 export const JOURNAL_STUDY_GLYPH = '学'
+
+export const ROADMAP_INTRO =
+  'A rough map of the journey — follow the main path in order, or wander down a side trail. Pick a stop to see every note tagged with it.'
+export const ROADMAP_PATH_TITLE = 'The main path'
+export const ROADMAP_BRANCHES_TITLE = 'Side trails'
+export const ROADMAP_BRANCHES_INTRO =
+  'Topics that don’t sit on the main sequence — evergreen practices, tooling, and tangents worth keeping.'
+export const ROADMAP_TOPIC_EMPTY = 'No notes here yet — this stop is still being charted…'
+export const ROADMAP_NOTE_COUNT_SINGULAR = 'note'
+export const ROADMAP_NOTE_COUNT_PLURAL = 'notes'

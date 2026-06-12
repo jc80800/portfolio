@@ -5,40 +5,40 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 
 vi.mock('../../data/journal', () => ({
   getAllPosts: vi.fn(),
-  getConceptTree: vi.fn(),
+  slugifyConcept: (name) =>
+    String(name)
+      .toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, '')
+      .trim()
+      .replace(/\s+/g, '-'),
 }))
 
-import { getAllPosts, getConceptTree } from '../../data/journal'
+import { getAllPosts } from '../../data/journal'
 import Journal from './Journal'
 
 const mockPosts = [
   {
-    slug: 'a',
-    title: 'Post A',
+    slug: 'incident-one',
+    title: 'My First Incident',
     date: '2026-06-12',
     summary: 'Sum A',
-    concept: 'On-Call',
-    conceptSlug: 'on-call',
-    tags: ['x'],
+    concept: 'Production Failures',
+    conceptSlug: 'production-failures',
+    tags: [],
     readTime: 3,
     published: true,
   },
   {
-    slug: 'b',
-    title: 'Post B',
-    date: '2026-06-05',
+    slug: 'agents-everywhere',
+    title: 'Agents Everywhere',
+    date: '2025-12-15',
     summary: 'Sum B',
-    concept: 'Testing',
-    conceptSlug: 'testing',
-    tags: [],
+    concept: 'General',
+    conceptSlug: 'general',
+    tags: ['AI Usage'],
     readTime: 1,
     published: true,
   },
-]
-
-const mockConcepts = [
-  { name: 'On-Call', slug: 'on-call', posts: [mockPosts[0]] },
-  { name: 'Testing', slug: 'testing', posts: [mockPosts[1]] },
 ]
 
 function renderJournal(initialEntries = ['/journal']) {
@@ -52,31 +52,88 @@ function renderJournal(initialEntries = ['/journal']) {
 describe('Journal index', () => {
   beforeEach(() => {
     getAllPosts.mockReturnValue(mockPosts)
-    getConceptTree.mockReturnValue(mockConcepts)
   })
 
-  it('renders a concept tree with post links', () => {
+  it('renders entries grouped by publish year by default', () => {
     renderJournal()
-    const nav = screen.getByRole('navigation', { name: /journal concepts/i })
-    expect(nav).toBeInTheDocument()
-    expect(nav.querySelector('a[href="/journal/a"]')).toBeInTheDocument()
-    expect(nav.querySelector('a[href="/journal/b"]')).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: /on-call/i })).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: /testing/i })).toBeInTheDocument()
-    expect(screen.getAllByRole('link', { name: /post a/i }).length).toBeGreaterThanOrEqual(1)
+    expect(screen.getByRole('heading', { name: '2026' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: '2025' })).toBeInTheDocument()
+    expect(
+      screen.getByRole('link', { name: /my first incident/i })
+    ).toHaveAttribute('href', '/journal/incident-one')
+    expect(
+      screen.getByRole('link', { name: /agents everywhere/i })
+    ).toHaveAttribute('href', '/journal/agents-everywhere')
   })
 
-  it('filters entries when a concept is selected', async () => {
+  it('shows the reading-order note linking to the roadmap view', () => {
+    renderJournal()
+    expect(screen.getByText(/read in any order/i)).toBeInTheDocument()
+    expect(screen.getByText(/none of these are ai-generated/i)).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /roadmap/i })).toHaveAttribute(
+      'href',
+      '/journal?view=roadmap'
+    )
+  })
+
+  it('links each concept label to its roadmap topic', () => {
+    renderJournal()
+    expect(
+      screen.getByRole('link', { name: 'Production Failures' })
+    ).toHaveAttribute('href', '/journal?view=roadmap&topic=production-failures')
+  })
+
+  it('switches to the roadmap view from the sidebar', async () => {
     const user = userEvent.setup()
     renderJournal()
-    await user.click(screen.getByRole('button', { name: /testing/i }))
-    expect(screen.getByText('Sum B')).toBeInTheDocument()
+    await user.click(screen.getByRole('button', { name: /^roadmap$/i }))
+    expect(
+      screen.getByRole('button', { name: /build core applications/i })
+    ).toBeInTheDocument()
+    expect(
+      screen.getByRole('button', { name: /scaling/i })
+    ).toBeInTheDocument()
     expect(screen.queryByText('Sum A')).not.toBeInTheDocument()
+  })
+
+  it('expands a roadmap topic to show its tagged posts', async () => {
+    const user = userEvent.setup()
+    renderJournal(['/journal?view=roadmap'])
+    await user.click(
+      screen.getByRole('button', { name: /production failures/i })
+    )
+    expect(
+      screen.getByRole('link', { name: /my first incident/i })
+    ).toHaveAttribute('href', '/journal/incident-one')
+  })
+
+  it('matches roadmap side-trail posts by tag', async () => {
+    const user = userEvent.setup()
+    renderJournal(['/journal?view=roadmap'])
+    await user.click(screen.getByRole('button', { name: /ai usage/i }))
+    expect(
+      screen.getByRole('link', { name: /agents everywhere/i })
+    ).toHaveAttribute('href', '/journal/agents-everywhere')
+  })
+
+  it('shows an empty message for roadmap topics with no notes', async () => {
+    const user = userEvent.setup()
+    renderJournal(['/journal?view=roadmap'])
+    await user.click(
+      screen.getByRole('button', { name: /build core applications/i })
+    )
+    expect(screen.getByText(/still being charted/i)).toBeInTheDocument()
+  })
+
+  it('auto-expands the roadmap topic from the URL', () => {
+    renderJournal(['/journal?view=roadmap&topic=production-failures'])
+    expect(
+      screen.getByRole('link', { name: /my first incident/i })
+    ).toBeInTheDocument()
   })
 
   it('renders an empty state when there are no posts', () => {
     getAllPosts.mockReturnValue([])
-    getConceptTree.mockReturnValue([])
     renderJournal()
     expect(screen.getByText(/still taking shape/i)).toBeInTheDocument()
     const postLinks = screen
@@ -98,9 +155,6 @@ describe('Journal index', () => {
         readTime: 1,
         published: false,
       },
-    ])
-    getConceptTree.mockReturnValue([
-      { name: 'General', slug: 'general', posts: getAllPosts() },
     ])
     renderJournal()
     expect(screen.getByText(/^draft$/i)).toBeInTheDocument()

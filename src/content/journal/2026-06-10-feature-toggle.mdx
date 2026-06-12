@@ -1,0 +1,104 @@
+---
+title: "Feature Toggles"
+date: "2026-06-10"
+summary: "Introduction to commonly used strategy to turn off shitty code"
+concept: "Shipping Safely"
+tags: ["feature-toggles", "feature-flags"]
+published: true
+---
+
+## The idea
+
+When I first joined my first company as an intern, one of the most interesting
+"concept" that was introduced to me was "feature toggles". This was something that I never
+thought of or even learned about before in school. Like no one ever talked about it, or probably know what it is.
+The idea to be able to "turn off" a feature or part of your codebase dynamically while it was live just never came to my mind.
+Not only is the concept crazy, it's also super simple to implement and use.
+
+## What it is and how it works
+
+There are many types of toggles that are generally used for different purposes. However,
+at its core, this is a simple if else statement in your codebase that you can tweak dynamically from a remote server.
+
+```golang
+if (featureToggle.enabled()) {
+    // code to execute when the feature is enabled
+} else {
+    // code to execute when the feature is disabled
+}
+```
+
+"Ok bro, so how does featureToggle.enabled() work?"
+
+Coming out of school, we generally assume most if statements are "static" and can't really be changed at runtime. Or putting it another way
+we don't really think about changing an if condition dynamically. Yes we can reach different conditions but usually the parameters are
+different. But what if that `if condition` can make an API call to a remote server that stores a boolean value? And what if that
+boolean value can then be changed manually?
+
+![Application fetches toggle values from the toggle server on a poll interval; ops updates flags via POST. A local cache sits on the application side.](/journal/feature-toggle-architecture.png)
+
+That's what a feature toggle is. It's a simple API call to a remote server that stores a boolean value that can be
+modified live. The remote server can change the value however they want; usually through a web interface or a REST API. The
+application will continously make calls to the remote server to check the value every so often. At our place, the default is 10 seconds.
+
+## Now let's get fancy
+
+Now that we have an extremely simple usage, how can this be applied to more complex scenarios? Since the server is making an API call
+under the hood, we can simply pass in parameters to the API call for the remote server to evaluate. This is where the fun begins.
+
+Let's say we are rolling out a new feature to VVIP users because they are special :D. We can pass in this information `userStatus`
+to the API and the remote server will evaluate this and say "This toggle is currently enabled if userStatus == "VVIP"". And so because
+the remote server is the one doing the heavy lifting and evaluating, the application's job is to just throw in the information needed, and get a
+easy true or false back. On the remote server side, the users can tweak the parameters and create really complex strategies as they see fit.
+
+```markdown
+toggle: "isHeALoser"
+if userStatus == "poor" && location == "New York" && occupation == "software engineer"
+return true
+```
+
+## What is it used for?
+
+Like I said, there are many types. There are "release", "kill switch" or "experimental".
+
+[Unleash feature flag concepts](https://docs.getunleash.io/concepts/feature-flags)
+
+I don't really think there's a real difference in how they really work under the hood, mostly a naming convention or
+categorization. I mostly use "release" toggles for almost everything. It's used exactly like how I described above and you can
+use it however you want. Kill off something? Turn it off. Experiment with something? Turn it on with new criterias. Permissions? swap out the parameters.
+
+So how is it used at big corps?
+
+Some of the most common uses I see are:
+- Rolling code dark
+- Safety measure to turn off new logic in case of a bug
+- Slow ramp to users to test new features
+- Permissions
+
+**Rolling Code Dark** - This means we can deploy a new change into production but ensure it's not on for users until we are ready.
+We could also turn it on just for a specific subset of users and gradually expand it.
+
+**Safety Measure** - For those that have interned or have experience with production, you know that feeling of not knowing
+if your code is going to break? No matter how much you test, you still sweat? Well, feature toggle can sort of help ease your problem,
+since you can always turn it off if something goes wrong, and almost immediately.
+
+**Slow ramp** - Probably one of the more significant uses since our company is a B2C company and tracking user behavior is crucial. We
+can set the toggle to a certain percentage; meaning 10% of the time, the toggle will return true enabling feature to 10% of requests.
+
+**Permissions** -- Checking if a capability is allowed for a specific requests/user.
+
+## Popular Solutions
+
+There are many solutions out there that are popular and widely used. Here are a few:
+- Unleash
+- LaunchDarkly
+- Split.io
+- Flagsmith
+- FeatureFlags.io
+
+## Ending Note
+
+There's definitely more to it than what's described from my perspective. However, while this is a powerful tool,
+there are a lot of things to consider such as cost of hosting, scalability, distribution, and of course getting a centralized
+consensus/standardization across the organization. Let this be the initial impression of the tool. Look forward to more posts on the
+best practices and nuances.
