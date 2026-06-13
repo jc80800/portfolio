@@ -1,5 +1,5 @@
 import { Link, NavLink } from 'react-router-dom'
-import { JOURNAL_NAV_LABEL, STUDIO_NAME } from '../../config/brand'
+import { BENCH_NAV_LABEL, JOURNAL_NAV_LABEL, STUDIO_NAME } from '../../config/brand'
 import KoiMascot from '../KoiMascot/KoiMascot'
 import styles from './Header.module.css'
 
@@ -33,6 +33,16 @@ function Header() {
                 }
               >
                 Gallery
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/bench"
+                className={({ isActive }) =>
+                  [styles.navLink, isActive ? styles.active : ''].filter(Boolean).join(' ')
+                }
+              >
+                {BENCH_NAV_LABEL}
               </NavLink>
             </li>
             <li>

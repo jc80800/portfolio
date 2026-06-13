@@ -1,8 +1,9 @@
+import { Link } from 'react-router-dom'
 import StackTags from '../StackTags/StackTags'
 import styles from './GalleryCard.module.css'
 
 function GalleryCard({ item, displayIndex, className = '', style }) {
-  const { title, tagline, stack, githubUrl, liveUrl, status } = item
+  const { title, tagline, stack, githubUrl, liveUrl, benchSlug, status } = item
   const isWip = status === 'wip'
   const showLive = Boolean(liveUrl)
   const showGithub = Boolean(githubUrl)
@@ -43,6 +44,11 @@ function GalleryCard({ item, displayIndex, className = '', style }) {
           >
             View on GitHub
           </a>
+        )}
+        {benchSlug && (
+          <Link to={`/bench/${benchSlug}`} className={styles.link}>
+            Read the log
+          </Link>
         )}
         {showSoon && <span className={styles.soon}>Coming soon</span>}
       </div>

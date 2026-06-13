@@ -58,3 +58,27 @@ export const ROADMAP_BRANCHES_INTRO =
 export const ROADMAP_TOPIC_EMPTY = 'No notes here yet — this stop is still being charted…'
 export const ROADMAP_NOTE_COUNT_SINGULAR = 'note'
 export const ROADMAP_NOTE_COUNT_PLURAL = 'notes'
+
+export const BENCH_NAV_LABEL = 'Bench'
+export const BENCH_EYEBROW = 'The Bench'
+export const BENCH_SERIES_TITLE = 'Experiment logs from the lab bench'
+export const BENCH_INTRO =
+  'Release notes and research logs for active experiments — one write-up per phase, plus whatever ad-hoc notes come up along the way.'
+export const BENCH_EDITORIAL_NOTE =
+  'Hand-written logs, not generated copy. Each entry documents what shipped in a phase, what broke, and what comes next.'
+export const BENCH_INVITE_BODY =
+  'Long-form R&D notes on projects hosted under the lab subdomain — phased releases, open questions, and the messy middle of building.'
+export const BENCH_INVITE_CTA = 'Browse experiments'
+export const BENCH_EMPTY = 'No experiments on the bench yet — the first protocol is still being drafted…'
+export const BENCH_PROJECT_NOT_FOUND = 'This experiment was archived or never existed…'
+export const BENCH_ENTRY_NOT_FOUND = 'This log entry was removed or moved…'
+export const BENCH_EXPERIMENT_GLYPH = '验'
+export const BENCH_PHASES_TITLE = 'Release phases'
+export const BENCH_ENTRIES_TITLE = 'Release log'
+export const BENCH_ENTRIES_EMPTY = 'No log entries yet — the first release note is still being written…'
+export const BENCH_UNGROUPED_ENTRIES = 'Between phases'
+export const BENCH_LOG_ENTRY_SINGULAR = 'log entry'
+export const BENCH_LOG_ENTRY_PLURAL = 'log entries'
+export const BENCH_OPEN_EXPERIMENT = 'Open experiment'
+export const BENCH_READ_LOG = 'Read the log'
+export const BENCH_BACK_TO_BENCH = '← Back to the Bench'

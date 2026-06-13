@@ -1,0 +1,37 @@
+---
+title: "Phase 0 — Problem Statement"
+date: "2026-06-12"
+summary: "Start of a new experiment to understand rate limiting and backpressure"
+project: "throttle-arena"
+phase: "phase-0"
+tags: ["rate-limiting", "backpressure"]
+published: true
+---
+
+## Motivation
+
+Rate limiting is a pretty common load shedding strategy in distributed systems. While the idea
+is pretty simple, there are a lot of nuances and details that I have encountered at work. 
+
+Nothing grand or fancy, just a simple idea to play around to understand rate limiting more and
+letting the childhood game dev juice run while at it. 
+
+## Medium
+
+Decided to go with a web-based game approach. This is the start of my many projects and wanted to
+keep it simple and presentable. 
+
+AI came up with some pretty good ideas and ultimately I chose to go with a "incremental clicker" game. 
+The asset generation shouldn't nuke my token budget and should be able to implement couple of
+interesting mechanics. 
+
+## Hypothesis
+
+Every click a user makes, is a request to the server. For the current problem statement, 
+I want to restrict to a single server and client relationship. In a more complex system that engineers
+might encounter at bigger tech, there are ton more things to consider. However, we will start small
+and build slowly from there.
+
+1. **Burst vs. sustained rate** — Players do random things, they can click as fast as they want or not at all. 
+2. **Algorithm** - Will start off with simple window based algorithm, see how it performs and then move towards industry standard or custom built algorithms.
+3. **Storage** - Simple in-memory, can also explore how multiple instances of server interaction and pitfalls. 

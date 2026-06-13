@@ -1,5 +1,21 @@
 export const galleryItems = [
   {
+    id: 'throttle-arena',
+    title: 'Throttle Arena',
+    tagline: 'A proving ground for rate limits, backpressure, and controlled chaos.',
+    description:
+      'Interactive lab for exploring throttling strategies — token buckets, adaptive shedding, live telemetry.',
+    stack: ['Go', 'WebSockets', 'Redis'],
+    githubUrl: null,
+    liveUrl: 'https://throttle-arena.lab.gatewoodlab.com/',
+    benchSlug: 'throttle-arena',
+    embedUrl: null,
+    slug: null,
+    featured: true,
+    tags: ['infrastructure', 'learning'],
+    status: 'shipped',
+  },
+  {
     id: 'pomodoro-roulette',
     title: 'Pomodoro Roulette',
     tagline: 'Spin for focus length. Blame the wheel if you quit early.',

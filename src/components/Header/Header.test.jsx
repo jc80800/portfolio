@@ -4,6 +4,15 @@ import { describe, it, expect } from 'vitest'
 import Header from './Header'
 
 describe('Header', () => {
+  it('renders the Bench nav link to /bench', () => {
+    render(
+      <MemoryRouter>
+        <Header />
+      </MemoryRouter>
+    )
+    expect(screen.getByRole('link', { name: 'Bench' })).toHaveAttribute('href', '/bench')
+  })
+
   it('renders the Journal nav link to /journal', () => {
     render(
       <MemoryRouter>

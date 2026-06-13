@@ -1,0 +1,66 @@
+---
+title: "Phase 1 — Core Arena Loop"
+date: "2026-06-13"
+summary: "Core logic and skeleton of the project"
+project: "throttle-arena"
+phase: "phase-1"
+tags: ["rate-limiting", "clicker", "go"]
+published: true
+---
+
+## Initial Delivery
+
+Live at [throttle-arena.lab.gatewoodlab.com](https://throttle-arena.lab.gatewoodlab.com/).
+
+Super simple delivery with a single server serving both api endpoint and the frontend binary.
+
+Thought about adding a separate frontend client but, to ensure I don't get distracted and AI overuse, sticking to this for now.
+
+## Server 
+
+Chose golang again for this project because why not. 
+
+The server handles the frontend binary on the index route and api endpoints for the click handler. 
+These endpoints are also where the rate limiting logic is implemented. In addition, there are also couple of utility endpoints for
+frontend to grab and display stats so players can see what's going on.
+
+**Algorithm**
+
+- Single Go HTTP service — one process, in-memory counters (no Redis yet)
+- Fixed-window rate limiter on the click endpoint
+- `429 Too Many Requests` (or equivalent rejection) when the window is exhausted
+
+For those that have read the code and understand the algorithm, the issue with window based is the blind spot in 
+between the timer when it resets. So imagine right before the 1 minute mark resets, you can spam all your clicks and then continue
+to click when it resets. This means you can get in 60 clicks within 5 seconds if the restraints are 30 clicks per minute. 
+
+Probably won't improve the algorithm itself in the next phase just yet, but for now, it's good to know why we don't use a simple
+timer for most use cases. 
+
+## What's next (Phase 2 sketch)
+
+While the algorithm itself is an issue, there are a couple of other things. 
+
+1. Persistence.
+
+For those that have used Vercel deployments, I just learned the free tier is actually ephemeral or, compute functions per requests.
+I was expecting pods or containers but this works out even better. You will notice that you can spam click and sometimes the numbers
+just change. Since everything is in memory, alot of this can go wrong if the server just changes. So one of main goal for next phase is
+probably adding redis or some other persistent storage. From there we would store the rate limiting configs and stats into the cache.
+
+2. Production
+
+While I don't really care if this thing breaks in production, probably a good idea to add a couple of logs to follow and debug certain issues.
+For some reason it was so hard to figure out why my deployment was breaking. Turns out it was mostly DNS issues but thought it was something
+with file structure. Welp.
+
+3. Visualization.
+
+Opus 4.8 FTW. Asset generation goes crazy. Though I did hear a lot about Nano banana but can't be bothered at the moment. My 
+artist is good enough for the current paygrade. Maybe try Fable end of month if I still got token left. 
+
+## Conclusion
+
+Thanks again for tuning in, hopefully you enjoyed the read and can see the potential of the project or at least get a laugh out of it.
+
+Keep vibing!
